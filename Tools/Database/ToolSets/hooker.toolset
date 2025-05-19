@@ -12,6 +12,19 @@
          },
          "showInInventory" : false,
          "uuid" : "42245db9-a3a4-475a-b265-c57b89b0cfb5"
+      },
+	  {
+         "autoTool" : true,
+         "name" : "tool_configurator",
+         "previewRenderable" : "$GAME_DATA/Character/Char_Tools/char_connecttool_preview.rend",
+         "previewRotation" : [ 1, 0, 0, 0, 0, -1, 0, 1, 0 ],
+         "script" : {
+            "class" : "Configurator",
+            "data" : {},
+            "file" : "$CONTENT_DATA/Scripts/configurator.lua"
+         },
+         "showInInventory" : false,
+         "uuid" : "d1934399-7838-4a2b-b8c7-e2e31aecb301"
       }
    ]
 }

@@ -1,7 +1,1 @@
-{
-   "be8cc137-c449-4e5b-a6ec-bbd168b9c71d" : {
-      "description" : "#ff0000!DOES NOTHING IF YOU HAVE NO CUSTOM AUDIO DLL MOD INSTALLED!\n#ffffffAllows you to select which song will play during raids and adjust its volume!",
-      "keywords" : ["Raid Music Configurator", "Raid", "Music", "Configurator", "Song", "Volume", "Config", "Control", "CRM", "Audio"],
-      "title" : "Raid Music Configurator"
-   }
-}
+{}

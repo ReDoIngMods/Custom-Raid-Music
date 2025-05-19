@@ -3,6 +3,31 @@ dofile("$CONTENT_40639a2c-bb9f-4d4f-b88c-41bfe264ffa8/Scripts/ModDatabase.lua")
 
 Configurator = class()
 
+sm.customRaidMusic = sm.customRaidMusic or {}
+
+if sm.customRaidMusic.addedBuiltIn == nil then sm.customRaidMusic.addedBuiltIn = false end
+sm.customRaidMusic.musicPacks = sm.customRaidMusic.musicPacks or {}
+
+
+if not sm.customRaidMusic.addedBuiltIn then
+	local musicPacks = {
+		{
+			name = "Black Mesa",
+			--Music Pack Icon
+			image = "",
+			songs = {
+				--Effect name (prepent mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
+				["BMBS - TakeControl"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 }
+			}
+		}
+	}
+
+	for _, pack in ipairs(musicPacks) do
+		table.insert(sm.customRaidMusic.musicPacks, pack)
+	end
+	sm.customRaidMusic.addedBuiltIn = true
+end
+
 local text = {
     English = {
         interaction = "Configure Raid Music",
@@ -53,20 +78,7 @@ local text = {
         volume_warning = "Achtung! Wen du d'\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusik usgwält hesch, wird es nur vom Lautstärkäregler i de Istelligä betroffä"
     }
 }
-local songNamesToEffectNames = {
-    ["Scrap Mechanic - Zheanna \"Zhea\" Erose - ???"] = "Vanilla",
-    ["Black Mesa: Blue Shift - Paweł Perepelica - Take Control"] = "BMBS - TakeControl",
-    ["Half-life: Alyx - Mike Morasky - Outbreak Is Uncontained"] = "HLA - OutbreakIsUncontained",
-    ["Murder Drones - AJ Dispirito - Click"] = "MD - Click",
-    ["Murder Drones - AJ Dispirito - Knife Dance"] = "MD - KnifeDance"
-}
-local effectNamesToSongNames = {
-    ["Vanilla"] = "Scrap Mechanic - Zheanna \"Zhea\" Erose - ???",
-    ["BMBS - TakeControl"] = "Black Mesa: Blue Shift - Paweł Perepelica - Take Control",
-    ["HLA - OutbreakIsUncontained"] = "Half-life: Alyx - Mike Morasky - Outbreak Is Uncontained",
-    ["MD - Click"] = "Murder Drones - AJ Dispirito - Click",
-    ["MD - KnifeDance"] = "Murder Drones - AJ Dispirito - Knife Dance"
-}
+
 local swissEasterEgg = (math.random(0, 1) == 0)
 local function translate(tag)
     local lang = sm.gui.getCurrentLanguage()
@@ -116,16 +128,21 @@ local function colorGradient(hexColor1, hexColor2, t)
 end
 
 -- Scan for other music packs
-ModDatabase.loadDescriptions()
+--[[ModDatabase.loadDescriptions()
 local musicPackIDs = {}
 for _, localId in ipairs(ModDatabase.getAllLoadedMods()) do
     if sm.json.fileExists("$CONTENT_" .. tostring(localId) .. "/song_config.json") then
         
     end
 end
-ModDatabase.unloadDescriptions()
+ModDatabase.unloadDescriptions()]]
+
+function Configurator:server_onCreate()
+	sm.customRaidMusic.tool = self.tool
+end
 
 function Configurator:client_onCreate()
+	sm.customRaidMusic.tool = self.tool
     self.saveableVolume = 101
     self.saveableSong = ""
     self.gui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Configurator.layout", false, {
@@ -139,8 +156,10 @@ function Configurator:client_onCreate()
     self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
     self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
     local options = {}
-    for name, _ in pairs(songNamesToEffectNames) do
-        options[#options+1] = name
+    for _, packData in ipairs(sm.customRaidMusic.musicPacks) do
+		for songName, _ in pairs(packData.songs) do
+			table.insert(options, songName)
+		end
     end
     self.gui:createDropDown("song_select_dropdown", "cl_onDropdownChange", options)
 end
@@ -166,14 +185,17 @@ end
 function Configurator:cl_onDropdownChange(newSong)
     print("Set new song:", newSong)
     local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    self.saveableSong = songNamesToEffectNames[newSong]
+    self.saveableSong = newSong
     json.selectedSong = self.saveableSong
     sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
     sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJsonAndEffect")
 end
 
-function Configurator:client_onInteract(character, state)
-    if not state then return end
+function Configurator:sv_openGui(params)
+	self.network:sendToClient(params.player, "cl_openGui", params)
+end
+
+function Configurator:cl_openGui()
     -- Localize
     self.gui:setText("full_title", translate("full_title"))
     self.gui:setText("volume_title", translate("volume_title"))
@@ -182,23 +204,9 @@ function Configurator:client_onInteract(character, state)
     -- Load data
     local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
     self.gui:setSliderPosition("volume_slider", json.volume * 1000)
-    self.gui:setSelectedDropDownItem("song_select_dropdown", effectNamesToSongNames[json.selectedSong])
+    self.gui:setSelectedDropDownItem("song_select_dropdown", json.selectedSong)
     self.saveableVolume = json.volume * 1000
     self.saveableSong = json.selectedSong
     self:cl_updateVolumeVisuals()
     self.gui:open()
-end
-
-function Configurator:client_canInteract(character)
-    if sm.cae_injected then
-        sm.gui.setInteractionText("", sm.gui.getKeyBinding("Use", true), translate("interaction"))
-        return true
-    else
-        sm.gui.setInteractionText(translate("interaction_deny"))
-        return false
-    end
-end
-
-function Configurator:client_onDestroy()
-    self.gui:destroy()
 end

@@ -11,10 +11,6 @@
         "BMBS-TakeControl": {
             "path": "$CONTENT_DATA/Effects/Audio/BMBS_TakeControl.ogg",
             "is3D": false
-        },
-        "HLA-OutbreakIsUncontained": {
-            "path": "$CONTENT_DATA/Effects/Audio/HLA_OutbreakIsUncontained.ogg",
-            "is3D": false
         }
     }
 }

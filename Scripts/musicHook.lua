@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-dofile "$CHALLENGE_DATA/Scripts/challenge/world_util.lua"
+dofile("$CHALLENGE_DATA/Scripts/challenge/world_util.lua")
 
 MusicHook = class()
 
@@ -14,10 +14,29 @@ if not sm.customRaidMusic.hooked then
 			dofile("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Scripts/dofiler.lua")
 			print("Hooking Raid Music")
 			sm.customRaidMusic.hooked = true
+			oldBindCommand("/raidMusic", {}, "cl_onChatCommand", "Opens the Raid Music configuration menu.")
 		end
 		oldBindCommand(command, params, callback, help)
 	end
 	sm.game.bindChatCommand = bindCommandHook
+	
+	
+	local oldWorldEvent = oldWorldEvent or sm.event.sendToWorld
+
+	local function worldEventHook(world, callback, params)
+		if not params then
+			oldWorldEvent(world, callback, params)
+			return
+		end
+
+		if params[1] == "/raidMusic" then
+			sm.event.sendToTool(sm.customRaidMusic.tool, "sv_openGui", params)
+		else
+			oldWorldEvent(world, callback, params)
+		end
+	end
+
+	sm.event.sendToWorld = worldEventHook
 end
 
 function MusicHook:client_onCreate()

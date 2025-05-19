@@ -17,24 +17,6 @@
          }
       ]
    },
-   "HLA - OutbreakIsUncontained": {
-      "parameterList": {
-         "CAE_Volume": 0.1,
-         "CAE_Position": 0.0
-      },
-      "effectList": [
-         {
-            "audio": [
-               "HLA-OutbreakIsUncontained"
-            ],
-            "type": "audio",
-            "parameters": [
-               "CAE_Volume",
-               "CAE_Position"
-            ]
-         }
-      ]
-   },
    "MD - Click": {
       "parameterList": {
          "CAE_Volume": 0.1,
