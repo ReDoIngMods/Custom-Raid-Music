@@ -1,5 +1,4 @@
 ---@diagnostic disable: undefined-global
-dofile("$CONTENT_40639a2c-bb9f-4d4f-b88c-41bfe264ffa8/Scripts/ModDatabase.lua")
 
 Configurator = class()
 
@@ -126,16 +125,6 @@ local function colorGradient(hexColor1, hexColor2, t)
 
     return rgbToHex(r, g, b)
 end
-
--- Scan for other music packs
---[[ModDatabase.loadDescriptions()
-local musicPackIDs = {}
-for _, localId in ipairs(ModDatabase.getAllLoadedMods()) do
-    if sm.json.fileExists("$CONTENT_" .. tostring(localId) .. "/song_config.json") then
-        
-    end
-end
-ModDatabase.unloadDescriptions()]]
 
 function Configurator:server_onCreate()
 	sm.customRaidMusic.tool = self.tool

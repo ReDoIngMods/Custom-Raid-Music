@@ -19,8 +19,7 @@ if not sm.customRaidMusic.hooked then
 		oldBindCommand(command, params, callback, help)
 	end
 	sm.game.bindChatCommand = bindCommandHook
-	
-	
+
 	local oldWorldEvent = oldWorldEvent or sm.event.sendToWorld
 
 	local function worldEventHook(world, callback, params)
