@@ -1,0 +1,300 @@
+<MyGUI type="Layout" version="3.2.0">
+	<Widget type="Widget" skin="PanelEmpty" name="BackPanel" position="0 0 1000 790">
+		<Widget type="ImageBox" skin="ImageBox" name="VinilVisual" position="200 0 600 300" />
+		<Widget type="Widget" skin="BackgroundInteractableUltraWide" position="0 300 1000 490">
+			<Widget type="TextBox" skin="TextBox" name="Title" position="200 30 600 38">
+				<Property key="Caption" value="CHOOSE SONGS" />
+				<Property key="FontName" value="SM_HeaderLarge_Wide" />
+				<Property key="TextAlign" value="Center" />
+			</Widget>
+			<Widget type="Widget" skin="PanelEmpty" position="20 100 460 320">
+				<Widget type="Button" skin="GenderButton" name="Pack1" position="0 0 460 60">
+					<Widget type="Widget" skin="HighlightSelectionBox" position="7 5 84 49">
+						<Property key="NeedMouse" value="false" />
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb1" position="2 2 80 45">
+							<Property key="NeedMouse" value="false" />
+						</Widget>
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName1" position="91 0 367 60">
+						<Property key="FontName" value="SM_ItemTitle" />
+						<Property key="Caption" value="Pack Name goes here" />
+						<Property key="TextAlign" value="Center" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Pack2" position="0 65 460 60">
+					<Widget type="Widget" skin="HighlightSelectionBox" position="7 5 84 49">
+						<Property key="NeedMouse" value="false" />
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb2" position="2 2 80 45">
+							<Property key="NeedMouse" value="false" />
+						</Widget>
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName2" position="91 0 367 60">
+						<Property key="FontName" value="SM_ItemTitle" />
+						<Property key="Caption" value="Pack Name goes here" />
+						<Property key="TextAlign" value="Center" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Pack3" position="0 130 460 60">
+					<Widget type="Widget" skin="HighlightSelectionBox" position="7 5 84 49">
+						<Property key="NeedMouse" value="false" />
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb3" position="2 2 80 45">
+							<Property key="NeedMouse" value="false" />
+						</Widget>
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName3" position="91 0 367 60">
+						<Property key="FontName" value="SM_ItemTitle" />
+						<Property key="Caption" value="Pack Name goes here" />
+						<Property key="TextAlign" value="Center" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Pack4" position="0 195 460 60">
+					<Widget type="Widget" skin="HighlightSelectionBox" position="7 5 84 49">
+						<Property key="NeedMouse" value="false" />
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb4" position="2 2 80 45">
+							<Property key="NeedMouse" value="false" />
+						</Widget>
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName4" position="91 0 367 60">
+						<Property key="FontName" value="SM_ItemTitle" />
+						<Property key="Caption" value="Pack Name goes here" />
+						<Property key="TextAlign" value="Center" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Pack5" position="0 260 460 60">
+					<Widget type="Widget" skin="HighlightSelectionBox" position="7 5 84 49">
+						<Property key="NeedMouse" value="false" />
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb5" position="2 2 80 45">
+							<Property key="NeedMouse" value="false" />
+						</Widget>
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName5" position="91 0 367 60">
+						<Property key="FontName" value="SM_ItemTitle" />
+						<Property key="Caption" value="Pack Name goes here" />
+						<Property key="TextAlign" value="Center" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+				</Widget>
+			</Widget>
+			<Widget type="TextBox" skin="TextBox" name="PlaylistTitle" position="0 70 500 30">
+				<Property key="TextAlign" value="Center" />
+				<Property key="TextColour" value="1 0.803922 0.247059" />
+				<Property key="FontName" value="SM_SubHeader" />
+				<Property key="Caption" value="LOADED PACKS" />
+			</Widget>
+			<Widget type="TextBox" skin="TextBox" name="PlaylistTitle" position="500 70 500 30">
+				<Property key="TextAlign" value="Center" />
+				<Property key="TextColour" value="1 0.803922 0.247059" />
+				<Property key="FontName" value="SM_SubHeader" />
+				<Property key="Caption" value="TRACKS" />
+			</Widget>
+			<Widget type="Widget" skin="WhiteSkin" position="499 100 2 370">
+				<Property key="Alpha" value="0.2" />
+			</Widget>
+			<Widget type="Widget" skin="PanelEmpty" position="520 100 460 320">
+				<Widget type="Button" skin="GenderButton" name="Song1" position="0 0 460 60">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName1" position="10 0 424 35">
+						<Property key="FontName" value="SM_Label" />
+						<Property key="Caption" value="Song Name goes here" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="ImageBox" skin="ImageBox" name="SongCheck1" position="434 6 20 20">
+						<Property key="ImageTexture" value="IconCheckmarkDefault.png" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Colour" value="#767676" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer1" position="10 30 424 21">
+						<Property key="FontName" value="SM_LabelTiny" />
+						<Property key="Caption" value="by: EEEE" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="1" />
+						<Property key="TextColour" value="#808080" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Song2" position="0 65 460 60">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName2" position="10 0 424 35">
+						<Property key="FontName" value="SM_Label" />
+						<Property key="Caption" value="Song Name goes here" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="ImageBox" skin="ImageBox" name="SongCheck2" position="434 6 20 20">
+						<Property key="ImageTexture" value="IconCheckmarkDefault.png" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Colour" value="#767676" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer2" position="10 30 424 21">
+						<Property key="FontName" value="SM_LabelTiny" />
+						<Property key="Caption" value="by: EEEE" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="1" />
+						<Property key="TextColour" value="#808080" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Song3" position="0 130 460 60">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName3" position="10 0 424 35">
+						<Property key="FontName" value="SM_Label" />
+						<Property key="Caption" value="Song Name goes here" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="ImageBox" skin="ImageBox" name="SongCheck3" position="434 6 20 20">
+						<Property key="ImageTexture" value="IconCheckmarkDefault.png" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Colour" value="#767676" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer3" position="10 30 424 21">
+						<Property key="FontName" value="SM_LabelTiny" />
+						<Property key="Caption" value="by: EEEE" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="1" />
+						<Property key="TextColour" value="#808080" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Song4" position="0 195 460 60">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName4" position="10 0 424 35">
+						<Property key="FontName" value="SM_Label" />
+						<Property key="Caption" value="Song Name goes here" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="ImageBox" skin="ImageBox" name="SongCheck4" position="434 6 20 20">
+						<Property key="ImageTexture" value="IconCheckmarkDefault.png" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Colour" value="#767676" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer4" position="10 30 424 21">
+						<Property key="FontName" value="SM_LabelTiny" />
+						<Property key="Caption" value="by: EEEE" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="1" />
+						<Property key="TextColour" value="#808080" />
+					</Widget>
+				</Widget>
+				<Widget type="Button" skin="GenderButton" name="Song5" position="0 260 460 60">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName5" position="10 0 424 35">
+						<Property key="FontName" value="SM_Label" />
+						<Property key="Caption" value="Song Name goes here" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="ImageBox" skin="ImageBox" name="SongCheck5" position="434 6 20 20">
+						<Property key="ImageTexture" value="IconCheckmarkDefault.png" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Colour" value="#767676" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer5" position="10 30 424 21">
+						<Property key="FontName" value="SM_LabelTiny" />
+						<Property key="Caption" value="by: EEEE" />
+						<Property key="TextAlign" value="Left VCenter" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="1" />
+						<Property key="TextColour" value="#808080" />
+					</Widget>
+				</Widget>
+			</Widget>
+			<Widget type="Widget" skin="PanelEmpty" name="PacksPages" position="20 425 460 45">
+				<Widget type="EditBox" skin="EditBoxEmpty" name="CurrPagePacks" position="43 0 372 45">
+					<Property key="FontName" value="SM_ItemTitle" />
+					<Property key="Caption" value="0/99" />
+					<Property key="TextAlign" value="Center" />
+					<Property key="ReadOnly" value="true" />
+					<Property key="Static" value="true" />
+					<Property key="NeedMouse" value="false" />
+					<Property key="NeedKey" value="false" />
+				</Widget>
+				<Widget type="Button" skin="DressbotArrowRight" name="NextPagePacks" position="415 0 45 45">
+					<Property key="NeedMouse" value="true" />
+				</Widget>
+				<Widget type="Button" skin="DressbotArrowLeft" name="PrevPagePacks" position="0 0 45 45">
+					<Property key="NeedMouse" value="true" />
+				</Widget>
+			</Widget>
+			<Widget type="Widget" skin="PanelEmpty" name="TracksPages" position="520 425 460 45">
+				<Widget type="EditBox" skin="EditBoxEmpty" name="CurrPageTracks" position="43 0 372 45">
+					<Property key="FontName" value="SM_ItemTitle" />
+					<Property key="Caption" value="0/99" />
+					<Property key="TextAlign" value="Center" />
+					<Property key="ReadOnly" value="true" />
+					<Property key="Static" value="true" />
+					<Property key="NeedMouse" value="false" />
+					<Property key="NeedKey" value="false" />
+				</Widget>
+				<Widget type="Button" skin="DressbotArrowRight" name="NextPageTracks" position="415 0 45 45">
+					<Property key="NeedMouse" value="true" />
+				</Widget>
+				<Widget type="Button" skin="DressbotArrowLeft" name="PrevPageTracks" position="0 0 45 45">
+					<Property key="NeedMouse" value="true" />
+				</Widget>
+			</Widget>
+		</Widget>
+	</Widget>
+</MyGUI>
