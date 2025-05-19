@@ -1,0 +1,34 @@
+{
+   "partList" : [
+      {
+         "box" : {
+            "x" : 1,
+            "y" : 1,
+            "z" : 1
+         },
+         "color" : "9f2600",
+         "flammable" : false,
+         "hull" : {
+            "x" : 1,
+            "y" : 1,
+            "z" : 1
+         },
+         "name" : "obj_interactive_raidSongConfigurator",
+         "physicsMaterial" : "Mechanical",
+         "ratings" : {
+            "buoyancy" : 4,
+            "density" : 5,
+            "durability" : 5,
+            "friction" : 4
+         },
+         "renderable" : "$CONTENT_DATA/Objects/Renderables/configurator.rend",
+         "rotationSet" : "PropFull",
+         "scripted" : {
+            "classname" : "Configurator",
+            "filename" : "$CONTENT_DATA/Scripts/configurator.lua"
+         },
+         "stackSize" : 420,
+         "uuid" : "be8cc137-c449-4e5b-a6ec-bbd168b9c71d"
+      }
+   ]
+}

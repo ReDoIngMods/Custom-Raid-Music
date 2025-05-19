@@ -1,0 +1,84 @@
+{
+   "BMBS - TakeControl": {
+      "parameterList": {
+         "CAE_Volume": 0.1,
+         "CAE_Position": 0.0
+      },
+      "effectList": [
+         {
+            "audio": [
+               "BMBS-TakeControl"
+            ],
+            "type": "audio",
+            "parameters": [
+               "CAE_Volume",
+               "CAE_Position"
+            ]
+         }
+      ]
+   },
+   "HLA - OutbreakIsUncontained": {
+      "parameterList": {
+         "CAE_Volume": 0.1,
+         "CAE_Position": 0.0
+      },
+      "effectList": [
+         {
+            "audio": [
+               "HLA-OutbreakIsUncontained"
+            ],
+            "type": "audio",
+            "parameters": [
+               "CAE_Volume",
+               "CAE_Position"
+            ]
+         }
+      ]
+   },
+   "MD - Click": {
+      "parameterList": {
+         "CAE_Volume": 0.1,
+         "CAE_Position": 0.0
+      },
+      "effectList": [
+         {
+            "audio": [
+               "MD-Click"
+            ],
+            "type": "audio",
+            "parameters": [
+               "CAE_Volume",
+               "CAE_Position"
+            ]
+         }
+      ]
+   },
+   "MD - KnifeDance": {
+      "parameterList": {
+         "CAE_Volume": 0.1,
+         "CAE_Position": 0.0
+      },
+      "effectList": [
+         {
+            "audio": [
+               "MD-KnifeDance"
+            ],
+            "type": "audio",
+            "parameters": [
+               "CAE_Volume",
+               "CAE_Position"
+            ]
+         }
+      ]
+   },
+   "Vanilla": {
+      "effectList": [
+         {
+            "audio": [
+               "event:/music/combat"
+            ],
+            "type": "audio"
+         }
+      ]
+   }
+}

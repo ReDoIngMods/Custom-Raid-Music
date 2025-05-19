@@ -1,0 +1,28 @@
+
+{
+	"selectedSong" : "MD - Click",
+	"songs" : 
+	{
+		"BMBS - TakeControl" : 
+		{
+			"loopEnd" : 181.0,
+			"loopStart" : 35.0
+		},
+		"HLA - OutbreakIsUncontained" : 
+		{
+			"loopEnd" : 95.0,
+			"loopStart" : 5.0
+		},
+		"MD - Click" : 
+		{
+			"loopEnd" : 117.50,
+			"loopStart" : 18.0
+		},
+		"MD - KnifeDance" : 
+		{
+			"loopEnd" : 54.0,
+			"loopStart" : 15.50
+		}
+	},
+	"volume" : 0.050
+}

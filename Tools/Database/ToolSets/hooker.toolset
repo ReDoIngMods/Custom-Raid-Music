@@ -1,0 +1,17 @@
+{
+   "toolList" : [
+      {
+         "autoTool" : true,
+         "name" : "tool_hooker",
+         "previewRenderable" : "$GAME_DATA/Character/Char_Tools/char_connecttool_preview.rend",
+         "previewRotation" : [ 1, 0, 0, 0, 0, -1, 0, 1, 0 ],
+         "script" : {
+            "class" : "MusicHook",
+            "data" : {},
+            "file" : "$CONTENT_DATA/Scripts/musicHook.lua"
+         },
+         "showInInventory" : false,
+         "uuid" : "42245db9-a3a4-475a-b265-c57b89b0cfb5"
+      }
+   ]
+}
