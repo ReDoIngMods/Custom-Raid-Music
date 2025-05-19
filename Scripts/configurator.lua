@@ -70,10 +70,18 @@ local effectNamesToSongNames = {
 
 local function translate(tag)
     local lang = sm.gui.getCurrentLanguage()
-    if text[lang] then
-        return text[lang][tag]
+    if lang == "German" then
+        if math.random(0, 1) == 0 then
+            return text[lang][tag]
+        else
+            return text["Swiss German"][tag]
+        end
     else
-        return text.English[tag]
+        if text[lang] then
+            return text[lang][tag]
+        else
+            return text.English[tag]
+        end
     end
 end
 
