@@ -67,11 +67,11 @@ local effectNamesToSongNames = {
     ["MD - Click"] = "Murder Drones - AJ Dispirito - Click",
     ["MD - KnifeDance"] = "Murder Drones - AJ Dispirito - Knife Dance"
 }
-
+local swissEasterEgg = (math.random(0, 1) == 0)
 local function translate(tag)
     local lang = sm.gui.getCurrentLanguage()
     if lang == "German" then
-        if math.random(0, 1) == 0 then
+        if swissEasterEgg then
             return text[lang][tag]
         else
             return text["Swiss German"][tag]
