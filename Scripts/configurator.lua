@@ -139,15 +139,15 @@ function Configurator:client_onCreate()
         needsCursor = true,
         hidesHotbar = false,
         isOverlapped = false,
-        backgroundAlpha = 0.25
+        backgroundAlpha = 0
     })
     self.playlistGUI = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
         isHud = false,
         isInteractive = true,
         needsCursor = true,
         hidesHotbar = false,
-        isOverlapped = false,
-        backgroundAlpha = 0.25
+        isOverlapped = true,
+        backgroundAlpha = 0
     })
     self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
     self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
