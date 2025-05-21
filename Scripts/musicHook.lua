@@ -39,6 +39,7 @@ if not sm.customRaidMusic.hooked then
 end
 
 function MusicHook:client_onCreate()
+	sm.customRaidMusic.musicHook = self.tool
 	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	if not sm.cae_injected then
 		self.songData.selectedSong = "Vanilla"
@@ -46,10 +47,10 @@ function MusicHook:client_onCreate()
 	self.music = sm.effect.createEffect(self.songData.selectedSong, sm.localPlayer.getPlayer().character)
 	self.musicPlaying = false
 	self.songProgress = 0
-	sm.customRaidMusic.musicHook = self.tool
 end
 
 function MusicHook:cl_resetJsonAndEffect()
+	sm.customRaidMusic.musicHook = self.tool
 	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	self.music:destroy()
 	self.music = nil

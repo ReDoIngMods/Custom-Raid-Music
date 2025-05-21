@@ -14,12 +14,12 @@
 					<Property key="FontName" value="SM_Digital" />
 					<Property key="Caption" value="888" />
 					<Property key="TextColour" value="#000000" />
-					<Property key="Alpha" value="0.65" />
-					<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position="0 0 80 30">
-						<Property key="TextAlign" value="Center" />
-						<Property key="FontName" value="SM_Digital" />
-						<Property key="Caption" value="100" />
-					</Widget>
+					<Property key="Alpha" value="0.25" />
+				</Widget>
+				<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position="10 5 80 30">
+					<Property key="TextAlign" value="Center" />
+					<Property key="FontName" value="SM_Digital" />
+					<Property key="Caption" value="100" />
 				</Widget>
 			</Widget>
 		</Widget>

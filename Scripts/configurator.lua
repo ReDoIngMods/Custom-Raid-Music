@@ -14,8 +14,9 @@ if not sm.customRaidMusic.addedBuiltIn then
 			name = "Black Mesa",
 			--Music Pack Icon
 			image = "",
+			color = sm.color.new("#df7f00"),
 			songs = {
-				--Effect name (prepent mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
+				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
 				["BMBS - TakeControl"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 }
 			}
 		}
@@ -83,9 +84,9 @@ local function translate(tag)
     local lang = sm.gui.getCurrentLanguage()
     if lang == "German" then
         if swissEasterEgg then
-            return text[lang][tag]
+			return text["Swiss German"][tag]
         else
-            return text["Swiss German"][tag]
+            return text[lang][tag]
         end
     else
         if text[lang] then
@@ -141,7 +142,11 @@ function Configurator:client_onCreate()
         isOverlapped = false,
         backgroundAlpha = 0
     })
-    self.playlistGUI = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
+	self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
+    self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
+    self.gui:setButtonCallback("open_playlist", "cl_openPlaylist")
+	
+    self.playlistGui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
         isHud = false,
         isInteractive = true,
         needsCursor = true,
@@ -149,31 +154,7 @@ function Configurator:client_onCreate()
         isOverlapped = true,
         backgroundAlpha = 0
     })
-    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
-    self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
-    self.gui:setButtonCallback("open_playlist", "cl_openPlaylist")
-end
-
-function Configurator:cl_updateVolumeVisuals()
-    local imageIndex = mapAndClamp(self.saveableVolume, 0, 100, 0, 59)
-    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_" .. imageIndex .. ".png")
-    self.gui:setColor("volume_image", sm.color.new(colorGradient("#56D9CD", "#F1385A", self.saveableVolume * 0.01)))
-    self.gui:setText("volume_number", tostring(self.saveableVolume))
-end
-
-function Configurator:cl_onSliderChange(newNumber)
-    -- Update data
-    self.saveableVolume = newNumber
-    self:cl_updateVolumeVisuals()
-    -- Save new volume
-    local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    json.volume = self.saveableVolume * 0.001
-    sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJson")
-end
-
-function Configurator:cl_openPlaylist()
-    self.playlistGUI:open()
+    self.playlistGui:setOnCloseCallback("cl_playlistClose")
 end
 
 function Configurator:sv_openGui(params)
@@ -189,9 +170,37 @@ function Configurator:cl_openGui()
     -- Load data
     local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
     self.gui:setSliderPosition("volume_slider", json.volume * 1000)
-    self.gui:setSelectedDropDownItem("song_select_dropdown", json.selectedSong)
+    --self.gui:setSelectedDropDownItem("song_select_dropdown", json.selectedSong)
     self.saveableVolume = json.volume * 1000
     self.saveableSong = json.selectedSong
     self:cl_updateVolumeVisuals()
     self.gui:open()
+end
+
+function Configurator:cl_updateVolumeVisuals()
+    local imageIndex = mapAndClamp(self.saveableVolume, 0, 100, 0, 59)
+    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_" .. imageIndex .. ".png")
+    self.gui:setColor("volume_image", sm.color.new(colorGradient("#56D9CD", "#F1385A", self.saveableVolume * 0.01)))
+	local str = tostring(self.saveableVolume)
+    self.gui:setText("volume_number", string.rep(" ", 3 - #str)..str)
+end
+
+function Configurator:cl_onSliderChange(newNumber)
+    -- Update data
+    self.saveableVolume = newNumber
+    self:cl_updateVolumeVisuals()
+    -- Save new volume
+    local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+    json.volume = self.saveableVolume * 0.001
+    sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+    sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJson")
+end
+
+function Configurator:cl_openPlaylist()
+	self.gui:close()
+    self.playlistGui:open()
+end
+
+function Configurator:cl_playlistClose()
+	self.gui:open()
 end
