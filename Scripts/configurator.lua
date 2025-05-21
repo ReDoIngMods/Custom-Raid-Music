@@ -142,10 +142,10 @@ function Configurator:client_onCreate()
         isOverlapped = false,
         backgroundAlpha = 0
     })
-	self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
+	self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_0.png")
     self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
     self.gui:setButtonCallback("open_playlist", "cl_openPlaylist")
-	
+
     self.playlistGui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
         isHud = false,
         isInteractive = true,
@@ -155,6 +155,8 @@ function Configurator:client_onCreate()
         backgroundAlpha = 0
     })
     self.playlistGui:setOnCloseCallback("cl_playlistClose")
+    self.animProgress = 0
+    self.frame = 1
 end
 
 function Configurator:sv_openGui(params)
@@ -170,7 +172,6 @@ function Configurator:cl_openGui()
     -- Load data
     local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
     self.gui:setSliderPosition("volume_slider", json.volume * 1000)
-    --self.gui:setSelectedDropDownItem("song_select_dropdown", json.selectedSong)
     self.saveableVolume = json.volume * 1000
     self.saveableSong = json.selectedSong
     self:cl_updateVolumeVisuals()
@@ -179,7 +180,7 @@ end
 
 function Configurator:cl_updateVolumeVisuals()
     local imageIndex = mapAndClamp(self.saveableVolume, 0, 100, 0, 59)
-    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_" .. imageIndex .. ".png")
+    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_" .. imageIndex .. ".png")
     self.gui:setColor("volume_image", sm.color.new(colorGradient("#56D9CD", "#F1385A", self.saveableVolume * 0.01)))
 	local str = tostring(self.saveableVolume)
     self.gui:setText("volume_number", string.rep(" ", 3 - #str)..str)
@@ -203,4 +204,19 @@ end
 
 function Configurator:cl_playlistClose()
 	self.gui:open()
+end
+
+function Configurator:client_onUpdate(dt)
+    if self.playlistGui:isActive() then
+        self.animProgress = self.animProgress + dt
+        if self.animProgress >= (1 / 60) then
+            self.playlistGui:setImage("VinilVisual", "$CONTENT_DATA/Gui/Images/vinyl/vinyl_frame_"..self.frame..".png")
+            self.playlistGui:setColor("VinilVisual", sm.color.new("#0099ff"))
+            self.frame = self.frame + 1
+            if self.frame > 300 then
+                self.frame = 1
+            end
+            self.animProgress = self.animProgress - (1 / 60)
+        end
+    end
 end
