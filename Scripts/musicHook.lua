@@ -12,7 +12,7 @@ if not sm.customRaidMusic.hooked then
 	local function bindCommandHook(command, params, callback, help)
 		if not sm.customRaidMusic.hooked then
 			dofile("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Scripts/dofiler.lua")
-			print("Hooking Raid Music")
+			print("[RAID MUSIC] Hooking Raid Music...")
 			sm.customRaidMusic.hooked = true
 			oldBindCommand("/raidMusic", {}, "cl_onChatCommand", "Opens the Raid Music configuration menu.")
 		end

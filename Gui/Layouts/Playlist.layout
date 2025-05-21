@@ -1,6 +1,8 @@
 <MyGUI type="Layout" version="3.2.0">
 	<Widget type="Widget" skin="PanelEmpty" name="BackPanel" position_real="0 0 0.5208333333333334 0.7314814814814815">
-		<Widget type="ImageBox" skin="ImageBox" name="VinilVisual" position_real="0.2 0 0.6 0.379746835443038" />
+		<Widget type="ImageBox" skin="ImageBox" name="VinylVisual" position_real="0.2 -0.03164556962025317 0.6 0.41139240506329117">
+			<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl/vinyl_frame_1.png" />
+		</Widget>
 		<Widget type="Widget" skin="BackgroundInteractableUltraWide" position_real="0 0.379746835443038 1 0.620253164556962">
 			<Widget type="TextBox" skin="TextBox" name="Title" position_real="0.2 0.061224489795918366 0.6 0.07755102040816327">
 				<Property key="Caption" value="CHOOSE SONGS" />

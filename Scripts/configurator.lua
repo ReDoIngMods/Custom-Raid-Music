@@ -2,11 +2,14 @@
 
 Configurator = class()
 
+-- GLOBALS
+
 sm.customRaidMusic = sm.customRaidMusic or {}
 
 if sm.customRaidMusic.addedBuiltIn == nil then sm.customRaidMusic.addedBuiltIn = false end
 sm.customRaidMusic.musicPacks = sm.customRaidMusic.musicPacks or {}
 
+-- PACKS
 
 if not sm.customRaidMusic.addedBuiltIn then
 	local musicPacks = {
@@ -27,6 +30,8 @@ if not sm.customRaidMusic.addedBuiltIn then
 	end
 	sm.customRaidMusic.addedBuiltIn = true
 end
+
+-- LOCALS
 
 local text = {
     English = {
@@ -79,6 +84,8 @@ local text = {
     }
 }
 
+-- LOCAL FUNCTIONS
+
 local swissEasterEgg = (math.random(0, 1) == 0)
 local function translate(tag)
     local lang = sm.gui.getCurrentLanguage()
@@ -127,14 +134,27 @@ local function colorGradient(hexColor1, hexColor2, t)
     return rgbToHex(r, g, b)
 end
 
+-- ACTUAL CODE
+
 function Configurator:server_onCreate()
 	sm.customRaidMusic.tool = self.tool
 end
 
 function Configurator:client_onCreate()
 	sm.customRaidMusic.tool = self.tool
-    self.saveableVolume = 101
-    self.gui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Configurator.layout", false, {
+
+    -- GUIs
+    self.cacheGUI = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Vinyl_cache.layout", true, {
+        isHud = true,
+        isInteractive = false,
+        needsCursor = false,
+        hidesHotbar = false,
+        isOverlapped = false,
+        backgroundAlpha = 0
+    })
+    self.cacheGUI:open()
+
+    self.mainGUI = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Configurator.layout", false, {
         isHud = false,
         isInteractive = true,
         needsCursor = true,
@@ -142,9 +162,9 @@ function Configurator:client_onCreate()
         isOverlapped = false,
         backgroundAlpha = 0
     })
-	self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_0.png")
-    self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
-    self.gui:setButtonCallback("open_playlist", "cl_openPlaylist")
+	self.mainGUI:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_0.png")
+    self.mainGUI:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
+    self.mainGUI:setButtonCallback("open_playlist", "cl_openPlaylist")
 
     self.playlistGui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
         isHud = false,
@@ -155,8 +175,13 @@ function Configurator:client_onCreate()
         backgroundAlpha = 0
     })
     self.playlistGui:setOnCloseCallback("cl_playlistClose")
+
+    -- Misc data
+    self.saveableVolume = 101
     self.animProgress = 0
     self.frame = 1
+    self.volumeSaveCooldown = 0
+    self.imageCacheCountdown = 40
 end
 
 function Configurator:sv_openGui(params)
@@ -165,58 +190,82 @@ end
 
 function Configurator:cl_openGui()
     -- Localize
-    self.gui:setText("full_title", translate("full_title"))
-    self.gui:setText("volume_title", translate("volume_title"))
-    self.gui:setText("select_title", translate("select_title"))
-    self.gui:setText("volume_warning", translate("volume_warning"))
+    self.mainGUI:setText("full_title", translate("full_title"))
+    self.mainGUI:setText("volume_title", translate("volume_title"))
+    self.mainGUI:setText("select_title", translate("select_title"))
+    self.mainGUI:setText("volume_warning", translate("volume_warning"))
     -- Load data
     local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    self.gui:setSliderPosition("volume_slider", json.volume * 1000)
+    self.mainGUI:setSliderPosition("volume_slider", json.volume * 1000)
     self.saveableVolume = json.volume * 1000
     self.saveableSong = json.selectedSong
     self:cl_updateVolumeVisuals()
-    self.gui:open()
+    self.mainGUI:open()
 end
 
 function Configurator:cl_updateVolumeVisuals()
     local imageIndex = mapAndClamp(self.saveableVolume, 0, 100, 0, 59)
-    self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_" .. imageIndex .. ".png")
-    self.gui:setColor("volume_image", sm.color.new(colorGradient("#56D9CD", "#F1385A", self.saveableVolume * 0.01)))
+    self.mainGUI:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume/volume_arrow_"..imageIndex..".png")
+    self.mainGUI:setColor("volume_image", sm.color.new(colorGradient("#56D9CD", "#F1385A", self.saveableVolume * 0.01)))
 	local str = tostring(self.saveableVolume)
-    self.gui:setText("volume_number", string.rep(" ", 3 - #str)..str)
+    self.mainGUI:setText("volume_number", string.rep(" ", 3 - #str)..str)
 end
 
 function Configurator:cl_onSliderChange(newNumber)
     -- Update data
     self.saveableVolume = newNumber
     self:cl_updateVolumeVisuals()
-    -- Save new volume
-    local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    json.volume = self.saveableVolume * 0.001
-    sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJson")
+    -- Reset cooldown
+    self.volumeSaveCooldown = 10
 end
 
 function Configurator:cl_openPlaylist()
-	self.gui:close()
+	self.mainGUI:close()
     self.playlistGui:open()
 end
 
 function Configurator:cl_playlistClose()
-	self.gui:open()
+	self.mainGUI:open()
 end
 
+function Configurator:client_onFixedUpdate(dt)
+    -- Save new volume
+    if self.volumeSaveCooldown == 1 then
+        print("[RAID MUSIC] Saved volume:", self.saveableVolume)
+        local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+        json.volume = self.saveableVolume * 0.001
+        sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+        sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJson")
+    end
+    -- Tick cooldown
+    if self.volumeSaveCooldown > 0 then
+        self.volumeSaveCooldown = self.volumeSaveCooldown - 1
+    end
+end
+
+local frameFraction = (1 / 60)
 function Configurator:client_onUpdate(dt)
+    -- Unload the cacheing GUI
+    if self.cacheGUI:isActive() then
+        if self.imageCacheCountdown > 0 then
+            self.imageCacheCountdown = self.imageCacheCountdown - 1
+        else
+            self.cacheGUI:destroy()
+            self.cacheGUI = nil
+            self.imageCacheCountdown = nil
+        end
+    end
+    -- Animate the vinyl
     if self.playlistGui:isActive() then
         self.animProgress = self.animProgress + dt
-        if self.animProgress >= (1 / 60) then
-            self.playlistGui:setImage("VinilVisual", "$CONTENT_DATA/Gui/Images/vinyl/vinyl_frame_"..self.frame..".png")
-            self.playlistGui:setColor("VinilVisual", sm.color.new("#0099ff"))
+        if self.animProgress >= frameFraction then
+            self.playlistGui:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl/vinyl_frame_"..self.frame..".png")
+            self.playlistGui:setColor("VinylVisual", sm.color.new("#d9240f"))
             self.frame = self.frame + 1
             if self.frame > 300 then
                 self.frame = 1
             end
-            self.animProgress = self.animProgress - (1 / 60)
+            self.animProgress = self.animProgress - frameFraction
         end
     end
 end

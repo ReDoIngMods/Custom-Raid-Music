@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, duplicate-set-field
 
 local worldClasses = {
     BaseWorld,
