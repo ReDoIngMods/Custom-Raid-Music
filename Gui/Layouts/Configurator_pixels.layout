@@ -6,14 +6,20 @@
 			<Property key="TextAlign" value="Center" />
 		</Widget>
 		<Widget type="Widget" skin="PanelEmpty" name="volume_slider" position="40 300 520 70" />
-		<Widget type="Widget" skin="PanelEmpty" name="song_select_dropdown" position="20 440 550 70" />
 		<Widget type="ImageBox" skin="ImageBox" name="volume_image" position="150 120 300 130">
 			<Property key="Colour" value="#56D9CD" />
-			<Widget type="Widget" skin="EditBox_LiftInput" position="100 100 100 30">
-				<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position="10 0 80 30">
+			<Widget type="Widget" skin="EditBox_LiftInput" position="100 90 100 40">
+				<Widget type="TextBox" skin="TextBoxSkin" position="10 5 80 30">
 					<Property key="TextAlign" value="Center" />
 					<Property key="FontName" value="SM_Digital" />
-					<Property key="Caption" value="100" />
+					<Property key="Caption" value="888" />
+					<Property key="TextColour" value="#000000" />
+					<Property key="Alpha" value="0.65" />
+					<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position="0 0 80 30">
+						<Property key="TextAlign" value="Center" />
+						<Property key="FontName" value="SM_Digital" />
+						<Property key="Caption" value="100" />
+					</Widget>
 				</Widget>
 			</Widget>
 		</Widget>
@@ -36,7 +42,7 @@
 			<Property key="Alpha" value="0.2" />
 		</Widget>
 		<Widget type="EditBox" skin="EditBoxEmpty" name="volume_warning" position="20 520 560 80">
-			<Property key="Caption" value="Warning! If you have the\n&quot;Scrap Mechanic - Zheanna &quot;Zhea&quot; Erose -  ??? (Vanilla)&quot;\nmusic selected, it will ONLY be affected by the volume slider in the settings!" />
+			<Property key="Caption" value="Warning! If you have the\n&quot;Scrap Mechanic - Zheanna &quot;Zhea&quot; Erose -  ???&quot;\nmusic selected, it will ONLY be affected by the volume slider in the settings!" />
 			<Property key="TextAlign" value="HCenter Top" />
 			<Property key="FontName" value="SM_LabelSmall" />
 			<Property key="MultiLine" value="true" />
@@ -47,6 +53,13 @@
 		<Widget type="Widget" skin="WhiteSkin" position="25 511 550 1">
 			<Property key="Colour" value="1 1 1" />
 			<Property key="Alpha" value="0.2" />
+		</Widget>
+		<Widget type="Button" skin="StyledButtonLarge" name="open_playlist" position="40 445 520 60">
+			<Property key="Caption" value="OPEN PLAYLIST MAKER" />
+			<Property key="TextAlign" value="Center" />
+			<Property key="TextShadow" value="true" />
+			<Property key="FontName" value="SM_HeaderLarge_Medium" />
+			<Property key="TextShadowColour" value="#DF7F00" />
 		</Widget>
 	</Widget>
 </MyGUI>

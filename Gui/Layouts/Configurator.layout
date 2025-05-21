@@ -6,14 +6,20 @@
 			<Property key="TextAlign" value="Center" />
 		</Widget>
 		<Widget type="Widget" skin="PanelEmpty" name="volume_slider" position_real="0.06666666666666667 0.5 0.8666666666666667 0.11666666666666667" />
-		<Widget type="Widget" skin="PanelEmpty" name="song_select_dropdown" position_real="0.03333333333333333 0.7333333333333333 0.9166666666666666 0.11666666666666667" />
 		<Widget type="ImageBox" skin="ImageBox" name="volume_image" position_real="0.25 0.2 0.5 0.21666666666666667">
 			<Property key="Colour" value="#56D9CD" />
-			<Widget type="Widget" skin="EditBox_LiftInput" position_real="0.3333333333333333 0.7692307692307693 0.3333333333333333 0.23076923076923078">
-				<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position_real="0.1 0 0.8 1">
+			<Widget type="Widget" skin="EditBox_LiftInput" position_real="0.3333333333333333 0.6923076923076923 0.3333333333333333 0.3076923076923077">
+				<Widget type="TextBox" skin="TextBoxSkin" position_real="0.1 0.125 0.8 0.75">
 					<Property key="TextAlign" value="Center" />
 					<Property key="FontName" value="SM_Digital" />
-					<Property key="Caption" value="100" />
+					<Property key="Caption" value="888" />
+					<Property key="TextColour" value="#000000" />
+					<Property key="Alpha" value="0.65" />
+					<Widget type="TextBox" skin="TextBoxSkin" name="volume_number" position_real="0 0 1 1">
+						<Property key="TextAlign" value="Center" />
+						<Property key="FontName" value="SM_Digital" />
+						<Property key="Caption" value="100" />
+					</Widget>
 				</Widget>
 			</Widget>
 		</Widget>
@@ -36,7 +42,7 @@
 			<Property key="Alpha" value="0.2" />
 		</Widget>
 		<Widget type="EditBox" skin="EditBoxEmpty" name="volume_warning" position_real="0.03333333333333333 0.8666666666666667 0.9333333333333333 0.13333333333333333">
-			<Property key="Caption" value="Warning! If you have the\n&quot;Scrap Mechanic - Zheanna &quot;Zhea&quot; Erose -  ??? (Vanilla)&quot;\nmusic selected, it will ONLY be affected by the volume slider in the settings!" />
+			<Property key="Caption" value="Warning! If you have the\n&quot;Scrap Mechanic - Zheanna &quot;Zhea&quot; Erose -  ???&quot;\nmusic selected, it will ONLY be affected by the volume slider in the settings!" />
 			<Property key="TextAlign" value="HCenter Top" />
 			<Property key="FontName" value="SM_LabelSmall" />
 			<Property key="MultiLine" value="true" />
@@ -47,6 +53,13 @@
 		<Widget type="Widget" skin="WhiteSkin" position_real="0.041666666666666664 0.8516666666666667 0.9166666666666666 0.0016666666666666668">
 			<Property key="Colour" value="1 1 1" />
 			<Property key="Alpha" value="0.2" />
+		</Widget>
+		<Widget type="Button" skin="StyledButtonLarge" name="open_playlist" position_real="0.06666666666666667 0.7416666666666667 0.8666666666666667 0.1">
+			<Property key="Caption" value="OPEN PLAYLIST MAKER" />
+			<Property key="TextAlign" value="Center" />
+			<Property key="TextShadow" value="true" />
+			<Property key="FontName" value="SM_HeaderLarge_Medium" />
+			<Property key="TextShadowColour" value="#DF7F00" />
 		</Widget>
 	</Widget>
 </MyGUI>

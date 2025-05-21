@@ -133,8 +133,15 @@ end
 function Configurator:client_onCreate()
 	sm.customRaidMusic.tool = self.tool
     self.saveableVolume = 101
-    self.saveableSong = ""
     self.gui = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Configurator.layout", false, {
+        isHud = false,
+        isInteractive = true,
+        needsCursor = true,
+        hidesHotbar = false,
+        isOverlapped = false,
+        backgroundAlpha = 0.25
+    })
+    self.playlistGUI = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Playlist.layout", false, {
         isHud = false,
         isInteractive = true,
         needsCursor = true,
@@ -144,13 +151,7 @@ function Configurator:client_onCreate()
     })
     self.gui:setImage("volume_image", "$CONTENT_DATA/Gui/Images/volume_arrow_0.png")
     self.gui:createHorizontalSlider("volume_slider", 101, 101, "cl_onSliderChange", true)
-    local options = {}
-    for _, packData in ipairs(sm.customRaidMusic.musicPacks) do
-		for songName, _ in pairs(packData.songs) do
-			table.insert(options, songName)
-		end
-    end
-    self.gui:createDropDown("song_select_dropdown", "cl_onDropdownChange", options)
+    self.gui:setButtonCallback("open_playlist", "cl_openPlaylist")
 end
 
 function Configurator:cl_updateVolumeVisuals()
@@ -171,13 +172,8 @@ function Configurator:cl_onSliderChange(newNumber)
     sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJson")
 end
 
-function Configurator:cl_onDropdownChange(newSong)
-    print("Set new song:", newSong)
-    local json = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    self.saveableSong = newSong
-    json.selectedSong = self.saveableSong
-    sm.json.save(json, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-    sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_resetJsonAndEffect")
+function Configurator:cl_openPlaylist()
+    self.playlistGUI:open()
 end
 
 function Configurator:sv_openGui(params)

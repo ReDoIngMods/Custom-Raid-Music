@@ -1,28 +1,7 @@
 
 {
-	"selectedSong" : "961ea449-f668-4444-8ec8-ee44fd99f42bHLA - OutbreakIsUncontained",
-	"songs" : 
-	{
-		"BMBS - TakeControl" : 
-		{
-			"loopEnd" : 181.0,
-			"loopStart" : 35.0
-		},
-		"HLA - OutbreakIsUncontained" : 
-		{
-			"loopEnd" : 95.0,
-			"loopStart" : 5.0
-		},
-		"MD - Click" : 
-		{
-			"loopEnd" : 117.50,
-			"loopStart" : 18.0
-		},
-		"MD - KnifeDance" : 
-		{
-			"loopEnd" : 54.0,
-			"loopStart" : 15.50
-		}
-	},
+	"playlist" : [
+		"961ea449-f668-4444-8ec8-ee44fd99f42bHLA - OutbreakIsUncontained"
+	],
 	"volume" : 0.10
 }
