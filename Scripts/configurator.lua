@@ -246,7 +246,7 @@ end
 local frameFraction = (1 / 60)
 function Configurator:client_onUpdate(dt)
     -- Unload the cacheing GUI
-    if self.cacheGUI:isActive() then
+    if self.cacheGUI and sm.exists(self.cacheGUI) and self.cacheGUI:isActive() then
         if self.imageCacheCountdown > 0 then
             self.imageCacheCountdown = self.imageCacheCountdown - 1
         else
