@@ -41,22 +41,27 @@ end
 function MusicHook:client_onCreate()
 	sm.customRaidMusic.musicHook = self.tool
 	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-	if not sm.cae_injected then
-		self.songData.selectedSong = "Vanilla"
-	end
-	self.music = sm.effect.createEffect(self.songData.selectedSong, sm.localPlayer.getPlayer().character)
+	self:cl_buildPlaylist()
 	self.musicPlaying = false
 	self.songProgress = 0
 end
 
-function MusicHook:cl_resetJsonAndEffect()
-	sm.customRaidMusic.musicHook = self.tool
+function MusicHook:cl_buildPlaylist()
 	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
-	self.music:destroy()
-	self.music = nil
-	self.music = sm.effect.createEffect(self.songData.selectedSong, sm.localPlayer.getPlayer().character)
-	self.musicPlaying = false
-	self.songProgress = 0
+	self.playlist = {}
+	for _, playlistSong in pairs(self.songData.playlist) do
+		for _, pack in pairs(sm.customRaidMusic.musicPacks) do
+			for _, packSong in ipairs(pack.songs) do
+				if string.sub(playlistSong, 15, 15) == "4" then
+					if string.sub(playlistSong, 0, 36) == packSong then
+						self.playlist[#self.playlist+1] = playlistSong
+					end
+				else
+					self.playlist[#self.playlist+1] = playlistSong
+				end
+			end
+		end
+	end
 end
 
 function MusicHook:cl_resetJson()
@@ -76,7 +81,7 @@ function MusicHook:client_onFixedUpdate(dt)
 		removeFromArray(raid.raiders, function(unit) return not sm.exists(unit) end)
 	end
 	-- Check attack cells
-	if self.songData.selectedSong == "Vanilla" then
+	if self.playlist[1] == "Vanilla" or not sm.cae_injected then
 		for _, cell in pairs(sv.sv.cropAttackCells) do
 			local attackPos = cell.saved.attackPos
 			if attackPos and (sm.localPlayer.getPlayer().character.worldPosition - attackPos):length() < 500 then
@@ -93,7 +98,7 @@ function MusicHook:client_onFixedUpdate(dt)
 			local attackPos = cell.saved.attackPos
 			if attackPos and (sm.localPlayer.getPlayer().character.worldPosition - attackPos):length() < 500 then
 				local attackTick = cell.saved.attackTick
-				if attackTick and curTick >= (attackTick - self.songData.songs[self.songData.selectedSong].loopStart * 40) then
+				if attackTick and self.currentSongData and curTick >= (attackTick - self.currentSongData.loopStart * 40) then
 					self.musicPlaying = true
 					break
 				else
@@ -109,7 +114,7 @@ function MusicHook:client_onFixedUpdate(dt)
 	end
 	-- Effect stuff
 	if self.music and sm.exists(self.music) then
-		if self.songData.selectedSong == "Vanilla" then
+		if self.playlist[1] == "Vanilla" or not sm.cae_injected then
 			-- Vanilla handles looping on it's own so we just let it do it's thing and tell it when to start and stop
 			if self.musicPlaying then
 				if not self.music:isPlaying() then
@@ -122,8 +127,7 @@ function MusicHook:client_onFixedUpdate(dt)
 			end
 		else
 			-- Song looping
-			local curSongData = self.songData.songs[self.songData.selectedSong]
-			if curSongData then
+			if self.currentSongData then
 				if self.musicPlaying then
 					-- Start playing
 					if not self.music:isPlaying() then
@@ -134,14 +138,14 @@ function MusicHook:client_onFixedUpdate(dt)
 						self.songProgress = self.songProgress + 0.25
 					end
 					-- Jump back to start
-					if self.songProgress >= curSongData.loopEnd then
-						self.songProgress = curSongData.loopStart
+					if self.songProgress >= self.currentSongData.loopEnd then
+						self.songProgress = self.currentSongData.loopStart
 					end
 					-- Force update progress to loop and stuff
 					self.music:setParameter("CAE_Position", self.songProgress)
 				else
 					-- Jump to the end and let it finish playing on it's own
-					self.music:setParameter("CAE_Position", curSongData.loopEnd)
+					self.music:setParameter("CAE_Position", self.currentSongData.loopEnd)
 					-- Reset progress, since we're just letting the song finish on it's own, it no londer needs forced progress
 					self.songProgress = 0
 				end
@@ -150,7 +154,14 @@ function MusicHook:client_onFixedUpdate(dt)
 	else
 		-- Create music if somehow missing
 		if sm.cae_injected then
-			self.music = sm.effect.createEffect(self.songData.selectedSong, sm.localPlayer.getPlayer().character)
+			self.music = sm.effect.createEffect(self.playlist[1], sm.localPlayer.getPlayer().character)
+			for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
+				self.currentSongData = pack.songs[string.sub(self.playlist[1], 0, 36)]
+			end
+			table.remove(self.playlist, 1)
+			if #self.playlist < 1 then
+				self:cl_buildPlaylist()
+			end
 		else
 			self.music = sm.effect.createEffect("Vanilla", sm.localPlayer.getPlayer().character)
 		end
