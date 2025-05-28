@@ -20,61 +20,7 @@ if not sm.customRaidMusic.addedBuiltIn then
 			color = sm.color.new("#df7f00"),
 			songs = {
 				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControl"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControla"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControls"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControld"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlf"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlg"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlh"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlj"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlk"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControll"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlc"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControls"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControly"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlx"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-				["BMBS - TakeControlc"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 }
-			}
-		},
-		{
-			name = "Black Fuckers",
-			--Music Pack Icon
-			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
-			color = sm.color.new("#df7f00"),
-			songs = {
-				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControlaaa"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-			}
-		},
-		{
-			name = "Black Fuckers",
-			--Music Pack Icon
-			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
-			color = sm.color.new("#df7f00"),
-			songs = {
-				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControlaaa"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-			}
-		},
-		{
-			name = "Black Fuckers",
-			--Music Pack Icon
-			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
-			color = sm.color.new("#df7f00"),
-			songs = {
-				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControlaaa"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
-			}
-		},
-		{
-			name = "Black Fuckers",
-			--Music Pack Icon
-			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
-			color = sm.color.new("#df7f00"),
-			songs = {
-				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControlaaa"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 },
+				["BMBS - TakeControl"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 }
 			}
 		}
 	}
@@ -310,7 +256,7 @@ function Configurator:cl_updatePacks()
 	self.playlistGui:setVisible("CurrPagePacks", maxPage > 1)
 	self.playlistGui:setVisible("NextPagePacks", self.currentPackPage < maxPage)
 	self.playlistGui:setVisible("PrevPagePacks", self.currentPackPage > 1)
-	
+
 	for i = 1, 5 do
 		local packI = (self.currentPackPage - 1) * 5 + i
 		local pack = sm.customRaidMusic.musicPacks[packI]
@@ -343,7 +289,7 @@ end
 
 function Configurator:cl_selectSong(btn)
 	local index = (self.currentSongsPage - 1) * 5 + string.sub(btn, -1)
-	
+
 	local packSongs = sm.customRaidMusic.musicPacks[self.currentSelectedPack].songs
 	local playlist = sm.customRaidMusic.songData.playlist
 	local songName = getByIndex(packSongs, index, true)
@@ -357,7 +303,7 @@ function Configurator:cl_selectSong(btn)
 	else
 		table.insert(playlist, songName)
 	end
-	
+
 	self:cl_updateSongs()
 end
 
@@ -375,11 +321,11 @@ function Configurator:cl_updateSongs()
 		local songI = (self.currentSongsPage - 1) * 5 + i
 		local songEffect = getByIndex(packSongs, songI, true)
 		local song = packSongs[songEffect]
-		
+
 		if song ~= nil then
 			self.playlistGui:setVisible("Song"..i, true)
 			local isEnabled = valueExists(playlist, songEffect)
-		
+
 			self.playlistGui:setButtonState("Song"..i, isEnabled)
 			self.playlistGui:setColor("SongCheck"..i, isEnabled and sm.color.new("#FFD44A") or sm.color.new("#767676"))
 			self.playlistGui:setImage("SongCheck"..i, isEnabled and "IconCheckmarkSelected.png" or "IconCheckmarkDefault.png")
