@@ -439,6 +439,7 @@ end
 function Configurator:cl_playlistClose()
 	self.mainGUI:open()
 	sm.json.save(sm.customRaidMusic.songData, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+	sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_buildPlaylist")
 end
 
 function Configurator:client_onFixedUpdate(dt)
