@@ -38,18 +38,19 @@ if not sm.customRaidMusic.hooked then
 	sm.event.sendToWorld = worldEventHook
 end
 
+sm.customRaidMusic.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+sm.customRaidMusic.songData.playlist = sm.customRaidMusic.songData.playlist or {}
+
 function MusicHook:client_onCreate()
 	sm.customRaidMusic.musicHook = self.tool
-	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	self:cl_buildPlaylist()
 	self.musicPlaying = false
 	self.songProgress = 0
 end
 
 function MusicHook:cl_buildPlaylist()
-	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	self.playlist = {}
-	for _, playlistSong in pairs(self.songData.playlist) do
+	for _, playlistSong in pairs(sm.customRaidMusic.songData.playlist) do
 		for _, pack in pairs(sm.customRaidMusic.musicPacks) do
 			for _, packSong in ipairs(pack.songs) do
 				if string.sub(playlistSong, 15, 15) == "4" then
@@ -65,7 +66,8 @@ function MusicHook:cl_buildPlaylist()
 end
 
 function MusicHook:cl_resetJson()
-	self.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+	sm.customRaidMusic.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
+	sm.customRaidMusic.songData.playlist = sm.customRaidMusic.songData.playlist or {}
 end
 
 function MusicHook:client_onFixedUpdate(dt)
@@ -168,6 +170,6 @@ function MusicHook:client_onFixedUpdate(dt)
 	end
 	-- Set volume all the time because I can't be bothered with checking when it's changed this has literally 0 performance impact, so whatever
 	if sm.cae_injected then
-		self.music:setParameter("CAE_Volume", self.songData.volume)
+		self.music:setParameter("CAE_Volume", sm.customRaidMusic.songData.volume)
 	end
 end

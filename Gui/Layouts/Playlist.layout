@@ -1,6 +1,6 @@
 <MyGUI type="Layout" version="3.2.0">
 	<Widget type="Widget" skin="PanelEmpty" name="BackPanel" position_real="0 0 0.5208333333333334 0.7314814814814815">
-		<Widget type="ImageBox" skin="ImageBox" name="VinylVisual" position_real="0.2 -0.03164556962025317 0.6 0.41139240506329117">
+		<Widget type="ImageBox" skin="ImageBox" name="VinylVisual" position_real="0.2 -0.03291139240506329 0.6 0.41139240506329117">
 			<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl/vinyl_frame_1.png" />
 		</Widget>
 		<Widget type="Widget" skin="BackgroundInteractableUltraWide" position_real="0 0.379746835443038 1 0.620253164556962">
@@ -123,6 +123,7 @@
 			</Widget>
 			<Widget type="Widget" skin="PanelEmpty" position_real="0.52 0.20408163265306123 0.46 0.6530612244897959">
 				<Widget type="Button" skin="GenderButton" name="Song1" position_real="0 0 1 0.1875">
+					<Property key="Visible" value="false" />
 					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName1" position_real="0.021739130434782608 0 0.9217391304347826 0.5833333333333334">
 						<Property key="FontName" value="SM_Label" />
 						<Property key="Caption" value="Song Name goes here" />
@@ -151,6 +152,7 @@
 					</Widget>
 				</Widget>
 				<Widget type="Button" skin="GenderButton" name="Song2" position_real="0 0.203125 1 0.1875">
+					<Property key="Visible" value="false" />
 					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName2" position_real="0.021739130434782608 0 0.9217391304347826 0.5833333333333334">
 						<Property key="FontName" value="SM_Label" />
 						<Property key="Caption" value="Song Name goes here" />
@@ -179,6 +181,7 @@
 					</Widget>
 				</Widget>
 				<Widget type="Button" skin="GenderButton" name="Song3" position_real="0 0.40625 1 0.1875">
+					<Property key="Visible" value="false" />
 					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName3" position_real="0.021739130434782608 0 0.9217391304347826 0.5833333333333334">
 						<Property key="FontName" value="SM_Label" />
 						<Property key="Caption" value="Song Name goes here" />
@@ -207,6 +210,7 @@
 					</Widget>
 				</Widget>
 				<Widget type="Button" skin="GenderButton" name="Song4" position_real="0 0.609375 1 0.1875">
+					<Property key="Visible" value="false" />
 					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName4" position_real="0.021739130434782608 0 0.9217391304347826 0.5833333333333334">
 						<Property key="FontName" value="SM_Label" />
 						<Property key="Caption" value="Song Name goes here" />
@@ -235,6 +239,7 @@
 					</Widget>
 				</Widget>
 				<Widget type="Button" skin="GenderButton" name="Song5" position_real="0 0.8125 1 0.1875">
+					<Property key="Visible" value="false" />
 					<Widget type="EditBox" skin="EditBoxEmpty" name="SongName5" position_real="0.021739130434782608 0 0.9217391304347826 0.5833333333333334">
 						<Property key="FontName" value="SM_Label" />
 						<Property key="Caption" value="Song Name goes here" />
