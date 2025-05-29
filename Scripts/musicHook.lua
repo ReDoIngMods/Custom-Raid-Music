@@ -13,7 +13,7 @@ if not sm.customRaidMusic.hooked then
 			dofile("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Scripts/dofiler.lua")
 			print("[RAID MUSIC] Hooking Raid Music...")
 			sm.customRaidMusic.hooked = true
-			oldBindCommand("/raidMusic", {}, "cl_onChatCommand", "Opens the Raid Music configuration menu.")
+			oldBindCommand("/musicconfig", {}, "cl_onChatCommand", "Opens the Raid Music configuration menu.")
 		end
 		oldBindCommand(command, params, callback, help)
 	end
@@ -27,7 +27,7 @@ if not sm.customRaidMusic.hooked then
 			return
 		end
 
-		if params[1] == "/raidMusic" then
+		if params[1] == "/musicconfig" then
 			sm.event.sendToTool(sm.customRaidMusic.tool, "sv_openGui", params)
 		else
 			oldWorldEvent(world, callback, params)
@@ -183,7 +183,7 @@ function MusicHook:client_onFixedUpdate(dt)
 			end
 		end
 		-- Recreate effect after it's done to advance the palylist
-		if self.queuedEffectRecreation and (not self.musicPlaying) and self.music and sm.exists(self.music) and (not self.music:isPlaying()) then
+		if self.queuedEffectRecreation and self.music and sm.exists(self.music) and not self.musicPlaying and not self.music:isPlaying() then
 			self.queuedEffectRecreation = false
 			self.music:destroy()
 			self.music = nil
