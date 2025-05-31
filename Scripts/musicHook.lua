@@ -70,6 +70,7 @@ function MusicHook:client_onCreate()
 	self.musicPlaying = false
 	self.songProgress = 0
 	self.queuedEffectRecreation = false
+	self.jumpToEnd = false
 end
 
 function MusicHook:cl_buildPlaylist()
@@ -169,11 +170,17 @@ function MusicHook:client_onFixedUpdate(dt)
 					end
 					-- Force update progress to loop and stuff
 					self.music:setParameter("CAE_Position", self.songProgress)
+					-- Prepare to jump
+					self.jumpToEnd = true
 				else
-					-- Jump to the end and let it finish playing on it's own
-					self.music:setParameter("CAE_Position", self.currentSongData.loopEnd)
-					-- Reset progress, since we're just letting the song finish on it's own, it no londer needs forced progress
-					self.songProgress = 0
+					if self.jumpToEnd then
+						-- Jump once
+						self.jumpToEnd = false
+						-- Jump to the end and let it finish playing on it's own
+						self.music:setParameter("CAE_Position", self.currentSongData.loopEnd)
+						-- Reset progress, since we're just letting the song finish on it's own, it no londer needs forced progress
+						self.songProgress = 0
+					end
 				end
 			else
 				for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
