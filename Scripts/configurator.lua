@@ -14,13 +14,13 @@ sm.customRaidMusic.musicPacks = sm.customRaidMusic.musicPacks or {}
 if not sm.customRaidMusic.addedBuiltIn then
 	local musicPacks = {
 		{
-			name = "Black Mesa",
+			name = "Scrap Mechanic",
 			--Music Pack Icon
 			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
 			color = sm.color.new("#df7f00"),
 			songs = {
 				--Effect name (prepend mod uuid!!) = {loopStart (seconds, 0.25 second precision), loopEnd (seconds, 0.25 second precision)}
-				["BMBS - TakeControl"] = { name = "Take Control", composer = "Your Mom", origin = "Black Mesa: Blue Shift", loopStart = 35, loopEnd = 181 }
+				["Vanilla"] = { name = "???", composer = "Zheanna \"Zhea\" Erose", origin = "Scrap Mechanic" }
 			}
 		}
 	}
