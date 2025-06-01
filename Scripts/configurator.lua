@@ -292,6 +292,12 @@ function Configurator:cl_selectSong(btn)
 
 	local packSongs = sm.customRaidMusic.musicPacks[self.currentSelectedPack].songs
 	local playlist = sm.customRaidMusic.songData.playlist
+	
+	if playlist == 0 then
+		sm.customRaidMusic.songData.playlist = {}
+		playlist = sm.customRaidMusic.songData.playlist
+	end
+	
 	local songName = getByIndex(packSongs, index, true)
 	if valueExists(playlist, songName) then
 		for i = #playlist, 1, -1 do
@@ -302,6 +308,10 @@ function Configurator:cl_selectSong(btn)
 		end
 	else
 		table.insert(playlist, songName)
+	end
+	
+	if #playlist < 1 then
+		playlist = 0
 	end
 
 	self:cl_updateSongs()
@@ -324,7 +334,7 @@ function Configurator:cl_updateSongs()
 
 		if song ~= nil then
 			self.playlistGui:setVisible("Song"..i, true)
-			local isEnabled = valueExists(playlist, songEffect)
+			local isEnabled = playlist ~= 0 and valueExists(playlist, songEffect)
 
 			self.playlistGui:setButtonState("Song"..i, isEnabled)
 			self.playlistGui:setColor("SongCheck"..i, isEnabled and sm.color.new("#FFD44A") or sm.color.new("#767676"))
@@ -384,6 +394,9 @@ end
 
 function Configurator:cl_playlistClose()
 	self.mainGUI:open()
+	if sm.customRaidMusic.songData.playlist ~= 0 and #sm.customRaidMusic.songData.playlist < 1 then
+		sm.customRaidMusic.songData.playlist = 0
+	end
 	sm.json.save(sm.customRaidMusic.songData, "$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	sm.event.sendToTool(sm.customRaidMusic.musicHook, "cl_buildPlaylist")
 end
