@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, param-type-mismatch
 
 Configurator = class()
 
@@ -292,12 +292,12 @@ function Configurator:cl_selectSong(btn)
 
 	local packSongs = sm.customRaidMusic.musicPacks[self.currentSelectedPack].songs
 	local playlist = sm.customRaidMusic.songData.playlist
-	
+
 	if playlist == 0 then
 		sm.customRaidMusic.songData.playlist = {}
 		playlist = sm.customRaidMusic.songData.playlist
 	end
-	
+
 	local songName = getByIndex(packSongs, index, true)
 	if valueExists(playlist, songName) then
 		for i = #playlist, 1, -1 do
@@ -309,7 +309,7 @@ function Configurator:cl_selectSong(btn)
 	else
 		table.insert(playlist, songName)
 	end
-	
+
 	if #playlist < 1 then
 		playlist = 0
 	end

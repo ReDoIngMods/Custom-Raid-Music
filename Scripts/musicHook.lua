@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, param-type-mismatch
 
 MusicHook = class()
 
@@ -77,11 +77,13 @@ end
 -- Playlist builder that accounts for stupid users who got a music pack, enabled songs from it and then promptly uninstalled it, leaving us with a pile of non-existent entries
 function MusicHook:cl_buildPlaylist()
 	self.playlist = {}
-	for _, playlistSong in pairs(sm.customRaidMusic.songData.playlist) do
-		for _, pack in pairs(sm.customRaidMusic.musicPacks) do
-			for packSongName, _ in pairs(pack.songs) do
-				if playlistSong == packSongName then
-					self.playlist[#self.playlist+1] = playlistSong
+	if sm.customRaidMusic.songData.playlist ~= 0 then
+		for _, playlistSong in pairs(sm.customRaidMusic.songData.playlist) do
+			for _, pack in pairs(sm.customRaidMusic.musicPacks) do
+				for packSongName, _ in pairs(pack.songs) do
+					if playlistSong == packSongName then
+						self.playlist[#self.playlist+1] = playlistSong
+					end
 				end
 			end
 		end
