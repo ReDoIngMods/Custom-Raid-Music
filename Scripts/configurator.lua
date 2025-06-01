@@ -262,7 +262,7 @@ function Configurator:cl_updatePacks()
 		local pack = sm.customRaidMusic.musicPacks[packI]
 		self.playlistGui:setButtonState("Pack"..i, packI == self.currentSelectedPack)
 		if packI == self.currentSelectedPack then
-			self.playlistGui:setColor("VinylVisual", pack and pack.color or sm.color.new("#d9240f"))
+			self.playlistGui:setColor("VinylVisual", pack and pack.color or sm.color.new("#ffffff"))
 		end
 		if pack ~= nil then
 			self.playlistGui:setVisible("Pack"..i, true)

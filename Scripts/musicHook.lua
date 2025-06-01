@@ -67,12 +67,14 @@ end
 function MusicHook:client_onCreate()
 	sm.customRaidMusic.musicHook = self.tool
 	self:cl_buildPlaylist()
+	-- Five million flags is a sign of a good mod, trust me
 	self.musicPlaying = false
 	self.songProgress = 0
 	self.queuedEffectRecreation = false
 	self.jumpToEnd = false
 end
 
+-- Playlist builder that accounts for stupid users who got a music pack, enabled songs from it and then promptly uninstalled it, leaving us with a pile of non-existent entries
 function MusicHook:cl_buildPlaylist()
 	self.playlist = {}
 	for _, playlistSong in pairs(sm.customRaidMusic.songData.playlist) do
@@ -87,6 +89,7 @@ function MusicHook:cl_buildPlaylist()
 	print("[RAID MUSIC] Built playlist:", self.playlist)
 end
 
+-- Using this only to save volume, playlist init is there too, redundancies never killed anyone!
 function MusicHook:cl_resetJson()
 	sm.customRaidMusic.songData = sm.json.open("$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/song_config.json")
 	sm.customRaidMusic.songData.playlist = sm.customRaidMusic.songData.playlist or {}
@@ -96,7 +99,7 @@ function MusicHook:client_onFixedUpdate(dt)
 	-- Import raid data we yoinked from the game script
 	local raids, sv, curTick = sm.customRaidMusic.raids, sm.customRaidMusic.UM_SvSelf, sm.game.getCurrentTick()
 	if not (raids and sv) then return end
-	-- Reset variable at a staggered rate to allow for the 0 seconds on the raid timer to pass
+	-- Reset variable at a staggered rate to allow for the 0 seconds on the raid timer to pass, thanks John Axolot
 	if curTick % 40 == 0 then
 		self.musicPlaying = false
 	end
@@ -183,13 +186,14 @@ function MusicHook:client_onFixedUpdate(dt)
 					end
 				end
 			else
+				-- Grab song data from the corresponding pack in the most cursed way possible
 				for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
 					self.currentSongData = pack.songs[self.playlist[1]]
 					if self.currentSongData then break end
 				end
 			end
 		end
-		-- Recreate effect after it's done to advance the palylist
+		-- Recreate effect after it's done to advance the playlist
 		if self.queuedEffectRecreation and self.music and sm.exists(self.music) and not self.musicPlaying and not self.music:isPlaying() then
 			self.queuedEffectRecreation = false
 			self.music:destroy()
@@ -198,17 +202,19 @@ function MusicHook:client_onFixedUpdate(dt)
 	else
 		-- Create music if somehow missing
 		if sm.cae_injected then
-			if self.playlist and #self.playlist > 0 then
-				self.music = sm.effect.createEffect(self.playlist[1], sm.localPlayer.getPlayer().character)
-				for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
-					self.currentSongData = pack.songs[self.playlist[1]]
-				end
-				table.remove(self.playlist, 1)
-				if #self.playlist < 1 then
+			if sm.customRaidMusic.songData.playlist ~= 0 then -- Allow users to have an empty playlist... Who installs a music mod to then disable music?
+				if self.playlist and #self.playlist > 0 then
+					self.music = sm.effect.createEffect(self.playlist[1], sm.localPlayer.getPlayer().character)
+					for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
+						self.currentSongData = pack.songs[self.playlist[1]]
+					end
+					table.remove(self.playlist, 1)
+					if #self.playlist < 1 then
+						self:cl_buildPlaylist()
+					end
+				else
 					self:cl_buildPlaylist()
 				end
-			else
-				self:cl_buildPlaylist()
 			end
 		else
 			self.music = sm.effect.createEffect("Vanilla", sm.localPlayer.getPlayer().character)
