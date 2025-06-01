@@ -14,7 +14,7 @@ sm.customRaidMusic.musicPacks = sm.customRaidMusic.musicPacks or {}
 if not sm.customRaidMusic.addedBuiltIn then
 	local musicPacks = {
 		{
-			name = "Scrap Mechanic",
+			name = "Scrap Mechanic Pack",
 			--Music Pack Icon
 			image = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png",
 			color = sm.color.new("#df7f00"),

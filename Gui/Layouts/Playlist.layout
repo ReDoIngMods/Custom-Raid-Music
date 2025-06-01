@@ -286,6 +286,7 @@
 				</Widget>
 			</Widget>
 			<Widget type="Widget" skin="PanelEmpty" name="TracksPages" position_real="0.52 0.8673469387755102 0.46 0.09183673469387756">
+				<Property key="Visible" value="false" />
 				<Widget type="EditBox" skin="EditBoxEmpty" name="CurrPageTracks" position_real="0.09347826086956522 0 0.808695652173913 1">
 					<Property key="FontName" value="SM_ItemTitle" />
 					<Property key="Caption" value="0/99" />
