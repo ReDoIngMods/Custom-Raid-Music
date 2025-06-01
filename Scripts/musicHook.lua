@@ -87,8 +87,16 @@ function MusicHook:cl_buildPlaylist()
 				end
 			end
 		end
+		if self.music and sm.exists(self.music) and self.music:isPlaying() then
+			if sm.cae_injected then
+				sm.effect.playHostedEffect("Transition", sm.localPlayer.getPlayer().character)
+			end
+			self.music:destroy()
+			self.music = nil
+			print("[RAID MUSIC] Killed playing music!")
+		end
+		print("[RAID MUSIC] Built playlist:", self.playlist)
 	end
-	print("[RAID MUSIC] Built playlist:", self.playlist)
 end
 
 -- Using this only to save volume, playlist init is there too, redundancies never killed anyone!

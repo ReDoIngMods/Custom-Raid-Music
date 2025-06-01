@@ -1,0 +1,40 @@
+{
+    "soundList": {
+        "Glitch1": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_glitch01.wav",
+            "is3D": false
+        },
+        "Glitch2": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_glitch02.wav",
+            "is3D": false
+        },
+        "Glitch3": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_glitch03.wav",
+            "is3D": false
+        },
+        "Glitch4": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_glitch04.wav",
+            "is3D": false
+        },
+        "Glitch5": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_glitch05.wav",
+            "is3D": false
+        },
+        "Misc3": {
+            "path": "$CONTENT_DATA/Effects/Audio/dancedrum_misc03.wav",
+            "is3D": false
+        },
+        "MixTape1": {
+            "path": "$CONTENT_DATA/Effects/Audio/mix_tape_01.wav",
+            "is3D": false
+        },
+        "MixTape2": {
+            "path": "$CONTENT_DATA/Effects/Audio/mix_tape_02.wav",
+            "is3D": false
+        },
+        "MixTape3": {
+            "path": "$CONTENT_DATA/Effects/Audio/mix_tape_03.wav",
+            "is3D": false
+        }
+    }
+}

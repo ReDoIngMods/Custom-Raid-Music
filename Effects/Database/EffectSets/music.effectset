@@ -1,11 +1,30 @@
 {
-   "Vanilla": {
-      "effectList": [
+   "Transition" : {
+      "effectList" : [
          {
-            "audio": [
-               "event:/music/combat"
-            ],
-            "type": "audio"
+            "audio" : [ "Misc3" ],
+            "type" : "audio"
+         },
+         {
+            "audio" : [ "Glitch1", "Glitch2", "Glitch3", "Glitch4", "Glitch5" ],
+            "type" : "audio"
+         },
+         {
+            "audio" : [ "MixTape1", "MixTape2", "MixTape3" ],
+            "delay" : 0.50,
+            "parameters" : [ "CAE_Volume" ],
+            "type" : "audio"
+         }
+      ],
+      "parameterList" : {
+         "CAE_Volume" : 0.10
+      }
+   },
+   "Vanilla" : {
+      "effectList" : [
+         {
+            "audio" : [ "event:/music/combat" ],
+            "type" : "audio"
          }
       ]
    }
