@@ -270,7 +270,7 @@ function Configurator:cl_updatePacks()
 			if pack.image and pcall(sm.json.fileExists, pack.image) and sm.json.fileExists(pack.image) then
 				self.playlistGui:setImage("PackThumb"..i, pack.image)
 			else
-				self.playlistGui:setImage("PackThumb"..i, "$CONTENT_DATA/Gui/Images/empty.png")
+				self.playlistGui:setImage("PackThumb"..i, "$CONTENT_DATA/Gui/Images/missing.png")
 			end
 		else
 			self.playlistGui:setVisible("Pack"..i, false)
