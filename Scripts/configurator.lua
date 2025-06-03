@@ -41,7 +41,15 @@ local text = {
         full_title = "RAID MUSIC CONFIGURATOR",
         volume_title = "VOLUME",
         select_title = "SONG SELECT",
-        volume_warning = "Warning! If you have the\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusic selected, it will ONLY be affected by the volume slider in the settings!"
+        volume_warning = "Warning! If you have the\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusic selected, it will ONLY be affected by the volume slider in the settings!",
+		
+		choose_songs_title = "CHOOSE SONGS",
+		loaded_packs_title = "LOADED PACKS",
+		tracks_title = "TRACKS",
+		featured_tracks = "Features Tracks from:",
+		featured_tracks_more = "And more...",
+		songs_created_by = "by:",
+		unknown_composer = "Unknown"
     },
     German = {
         interaction = "Konfiguriere Kampf Musik",
@@ -212,7 +220,7 @@ function Configurator:client_onCreate()
 	self.currentSelectedPack = 0
 	self.currentPackPage = 1
 	self.currentSongsPage = 1
-	for i = 1, 5 do
+	for i = 1, 2 do
 		self.playlistGui:setButtonCallback( "Pack"..i, "cl_selectPack" )
 	end
 	self.playlistGui:setButtonCallback( "NextPagePacks", "cl_onPacksPageChange" )
@@ -234,15 +242,15 @@ end
 
 function Configurator:cl_onPacksPageChange( btnName )
 	if btnName == "NextPagePacks" then
-		self.currentPackPage = sm.util.clamp(self.currentPackPage + 1, 1, math.ceil(#sm.customRaidMusic.musicPacks / 5))
+		self.currentPackPage = sm.util.clamp(self.currentPackPage + 1, 1, math.ceil(#sm.customRaidMusic.musicPacks / 2))
 	elseif btnName == "PrevPagePacks" then
-		self.currentPackPage = sm.util.clamp(self.currentPackPage - 1, 1, math.ceil(#sm.customRaidMusic.musicPacks / 5))
+		self.currentPackPage = sm.util.clamp(self.currentPackPage - 1, 1, math.ceil(#sm.customRaidMusic.musicPacks / 2))
 	end
 	self:cl_updatePacks()
 end
 
 function Configurator:cl_selectPack(btn)
-	local index = (self.currentPackPage - 1) * 5 + string.sub(btn, -1)
+	local index = (self.currentPackPage - 1) * 2 + string.sub(btn, -1)
 	self.currentSelectedPack = index
 	self:cl_updatePacks()
 	self.currentSongsPage = 1
@@ -251,14 +259,14 @@ end
 
 function Configurator:cl_updatePacks()
 
-	local maxPage = math.ceil(#sm.customRaidMusic.musicPacks / 5)
+	local maxPage = math.ceil(#sm.customRaidMusic.musicPacks / 2)
 	self.playlistGui:setText("CurrPagePacks", self.currentPackPage.."/"..maxPage)
 	self.playlistGui:setVisible("CurrPagePacks", maxPage > 1)
 	self.playlistGui:setVisible("NextPagePacks", self.currentPackPage < maxPage)
 	self.playlistGui:setVisible("PrevPagePacks", self.currentPackPage > 1)
 
-	for i = 1, 5 do
-		local packI = (self.currentPackPage - 1) * 5 + i
+	for i = 1, 2 do
+		local packI = (self.currentPackPage - 1) * 2 + i
 		local pack = sm.customRaidMusic.musicPacks[packI]
 		self.playlistGui:setButtonState("Pack"..i, packI == self.currentSelectedPack)
 		if packI == self.currentSelectedPack then
@@ -271,6 +279,38 @@ function Configurator:cl_updatePacks()
 				self.playlistGui:setImage("PackThumb"..i, pack.image)
 			else
 				self.playlistGui:setImage("PackThumb"..i, "$CONTENT_DATA/Gui/Images/missing.png")
+			end
+			
+			local songCount = pack.songs and getRealLength(pack.songs) or 0
+
+			local songCount = pack.songs and getRealLength(pack.songs) or 0
+
+			local songCount = pack.songs and getRealLength(pack.songs) or 0
+
+			if pack.songs and songCount > 0 then
+				local text = translate("featured_tracks")
+				local added = {}
+				local shown = 0
+
+				for _, v in pairs(pack.songs) do
+					local o = v.origin
+					if o and not added[o] then
+						added[o] = true
+						shown = shown + 1
+						if shown <= 4 then
+							text = text .. "\n" .. o
+						elseif shown == 5 then
+							text = text .. "\n" .. o
+						elseif shown >= 6 then
+							text = text:sub(1, #text - #o) .. translate("featured_tracks_more")
+							break
+						end
+					end
+				end
+
+				self.playlistGui:setText("PackContains"..i, text)
+			else
+				self.playlistGui:setText("PackContains"..i, "")
 			end
 		else
 			self.playlistGui:setVisible("Pack"..i, false)
@@ -340,7 +380,7 @@ function Configurator:cl_updateSongs()
 			self.playlistGui:setColor("SongCheck"..i, isEnabled and sm.color.new("#FFD44A") or sm.color.new("#767676"))
 			self.playlistGui:setImage("SongCheck"..i, isEnabled and "IconCheckmarkSelected.png" or "IconCheckmarkDefault.png")
 			self.playlistGui:setText("SongName"..i, (isEnabled and "#FFD44A" or "#ffffff")..(song.name or "UNNAMED!!!"))
-			self.playlistGui:setText("SongComposer"..i, (isEnabled and "#BFA337" or "#808080")..(song.composer and ("by: "..song.composer) or "by: unknown"))
+			self.playlistGui:setText("SongComposer"..i, (isEnabled and "#BFA337" or "#808080")..(song.composer and (translate("songs_created_by").." "..song.composer) or translate("songs_created_by").." "..translate("unknown_composer")))
 		else
 			self.playlistGui:setVisible("Song"..i, false)
 		end
@@ -390,6 +430,11 @@ end
 function Configurator:cl_openPlaylist()
 	self.mainGUI:close()
     self.playlistGui:open()
+	
+	
+	self.playlistGui:setText("Title", translate("choose_songs_title"))
+	self.playlistGui:setText("PacksTitle", translate("loaded_packs_title"))
+	self.playlistGui:setText("TracksTitle", translate("tracks_title"))
 end
 
 function Configurator:cl_playlistClose()

@@ -11,36 +11,51 @@
 				<Property key="TextAlign" value="Center" />
 			</Widget>
 			<Widget type="Widget" skin="PanelEmpty" position_real="0.02 0.20408163265306123 0.46 0.6530612244897959">
-				<Widget type="Button" skin="GenderButton" name="Pack1" position_real="0 0 1 0.1875">
-					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.08333333333333333 0.1826086956521739 0.8166666666666667">
+				<Widget type="Button" skin="GenderButton" name="Pack1" position_real="0 0 1 0.484375">
+					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.04516129032258064 0.3065217391304348 0.9096774193548387">
 						<Property key="NeedMouse" value="false" />
-						<Widget type="ImageBox" skin="ImageBox" name="PackThumb1" position_real="0.023809523809523808 0.04081632653061224 0.9523809523809523 0.9183673469387755">
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb1" position_real="0.014184397163120567 0.014184397163120567 0.9716312056737588 0.9716312056737588">
 							<Property key="NeedMouse" value="false" />
 						</Widget>
 					</Widget>
-					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName1" position_real="0.19782608695652174 0 0.7978260869565217 1">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName1" position_real="0.3217391304347826 0 0.6782608695652174 0.2129032258064516">
 						<Property key="FontName" value="SM_ItemTitle" />
 						<Property key="Caption" value="Pack Name goes here" />
-						<Property key="TextAlign" value="Center" />
+						<Property key="TextAlign" value="HCenter Bottom" />
 						<Property key="ReadOnly" value="true" />
 						<Property key="Static" value="true" />
 						<Property key="WordWrap" value="true" />
 						<Property key="OverflowToTheLeft" value="true" />
 						<Property key="MultiLine" value="true" />
 						<Property key="NeedMouse" value="false" />
+					</Widget>
+					<Widget type="Widget" skin="WhiteSkin" position_real="0.33695652173913043 0.22580645161290322 0.6434782608695652 0.012903225806451613">
+						<Property key="Alpha" value="0.2" />
+					</Widget>
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackContains1" position_real="0.33695652173913043 0.27741935483870966 0.6630434782608695 0.7096774193548387">
+						<Property key="FontName" value="SM_TextTiny" />
+						<Property key="Caption" value="Stuff" />
+						<Property key="TextAlign" value="Left Top" />
+						<Property key="ReadOnly" value="true" />
+						<Property key="Static" value="true" />
+						<Property key="WordWrap" value="true" />
+						<Property key="OverflowToTheLeft" value="true" />
+						<Property key="MultiLine" value="true" />
+						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="0.75" />
 					</Widget>
 				</Widget>
-				<Widget type="Button" skin="GenderButton" name="Pack2" position_real="0 0.203125 1 0.1875">
-					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.08333333333333333 0.1826086956521739 0.8166666666666667">
+				<Widget type="Button" skin="GenderButton" name="Pack2" position_real="0 0.515625 1 0.484375">
+					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.04516129032258064 0.3065217391304348 0.9096774193548387">
 						<Property key="NeedMouse" value="false" />
-						<Widget type="ImageBox" skin="ImageBox" name="PackThumb2" position_real="0.023809523809523808 0.04081632653061224 0.9523809523809523 0.9183673469387755">
+						<Widget type="ImageBox" skin="ImageBox" name="PackThumb2" position_real="0.014184397163120567 0.014184397163120567 0.9716312056737588 0.9716312056737588">
 							<Property key="NeedMouse" value="false" />
 						</Widget>
 					</Widget>
-					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName2" position_real="0.19782608695652174 0 0.7978260869565217 1">
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName2" position_real="0.3217391304347826 0 0.6782608695652174 0.2129032258064516">
 						<Property key="FontName" value="SM_ItemTitle" />
 						<Property key="Caption" value="Pack Name goes here" />
-						<Property key="TextAlign" value="Center" />
+						<Property key="TextAlign" value="HCenter Bottom" />
 						<Property key="ReadOnly" value="true" />
 						<Property key="Static" value="true" />
 						<Property key="WordWrap" value="true" />
@@ -48,72 +63,30 @@
 						<Property key="MultiLine" value="true" />
 						<Property key="NeedMouse" value="false" />
 					</Widget>
-				</Widget>
-				<Widget type="Button" skin="GenderButton" name="Pack3" position_real="0 0.40625 1 0.1875">
-					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.08333333333333333 0.1826086956521739 0.8166666666666667">
-						<Property key="NeedMouse" value="false" />
-						<Widget type="ImageBox" skin="ImageBox" name="PackThumb3" position_real="0.023809523809523808 0.04081632653061224 0.9523809523809523 0.9183673469387755">
-							<Property key="NeedMouse" value="false" />
-						</Widget>
+					<Widget type="Widget" skin="WhiteSkin" position_real="0.33695652173913043 0.22580645161290322 0.6434782608695652 0.012903225806451613">
+						<Property key="Alpha" value="0.2" />
 					</Widget>
-					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName3" position_real="0.19782608695652174 0 0.7978260869565217 1">
-						<Property key="FontName" value="SM_ItemTitle" />
-						<Property key="Caption" value="Pack Name goes here" />
-						<Property key="TextAlign" value="Center" />
+					<Widget type="EditBox" skin="EditBoxEmpty" name="PackContains2" position_real="0.33695652173913043 0.27741935483870966 0.6630434782608695 0.7096774193548387">
+						<Property key="FontName" value="SM_TextTiny" />
+						<Property key="Caption" value="Stuff" />
+						<Property key="TextAlign" value="Left Top" />
 						<Property key="ReadOnly" value="true" />
 						<Property key="Static" value="true" />
 						<Property key="WordWrap" value="true" />
 						<Property key="OverflowToTheLeft" value="true" />
 						<Property key="MultiLine" value="true" />
 						<Property key="NeedMouse" value="false" />
-					</Widget>
-				</Widget>
-				<Widget type="Button" skin="GenderButton" name="Pack4" position_real="0 0.609375 1 0.1875">
-					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.08333333333333333 0.1826086956521739 0.8166666666666667">
-						<Property key="NeedMouse" value="false" />
-						<Widget type="ImageBox" skin="ImageBox" name="PackThumb4" position_real="0.023809523809523808 0.04081632653061224 0.9523809523809523 0.9183673469387755">
-							<Property key="NeedMouse" value="false" />
-						</Widget>
-					</Widget>
-					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName4" position_real="0.19782608695652174 0 0.7978260869565217 1">
-						<Property key="FontName" value="SM_ItemTitle" />
-						<Property key="Caption" value="Pack Name goes here" />
-						<Property key="TextAlign" value="Center" />
-						<Property key="ReadOnly" value="true" />
-						<Property key="Static" value="true" />
-						<Property key="WordWrap" value="true" />
-						<Property key="OverflowToTheLeft" value="true" />
-						<Property key="MultiLine" value="true" />
-						<Property key="NeedMouse" value="false" />
-					</Widget>
-				</Widget>
-				<Widget type="Button" skin="GenderButton" name="Pack5" position_real="0 0.8125 1 0.1875">
-					<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.015217391304347827 0.08333333333333333 0.1826086956521739 0.8166666666666667">
-						<Property key="NeedMouse" value="false" />
-						<Widget type="ImageBox" skin="ImageBox" name="PackThumb5" position_real="0.023809523809523808 0.04081632653061224 0.9523809523809523 0.9183673469387755">
-							<Property key="NeedMouse" value="false" />
-						</Widget>
-					</Widget>
-					<Widget type="EditBox" skin="EditBoxEmpty" name="PackName5" position_real="0.19782608695652174 0 0.7978260869565217 1">
-						<Property key="FontName" value="SM_ItemTitle" />
-						<Property key="Caption" value="Pack Name goes here" />
-						<Property key="TextAlign" value="Center" />
-						<Property key="ReadOnly" value="true" />
-						<Property key="Static" value="true" />
-						<Property key="WordWrap" value="true" />
-						<Property key="OverflowToTheLeft" value="true" />
-						<Property key="MultiLine" value="true" />
-						<Property key="NeedMouse" value="false" />
+						<Property key="Alpha" value="0.75" />
 					</Widget>
 				</Widget>
 			</Widget>
-			<Widget type="TextBox" skin="TextBox" name="PlaylistTitle" position_real="0 0.14285714285714285 0.5 0.061224489795918366">
+			<Widget type="TextBox" skin="TextBox" name="PacksTitle" position_real="0 0.14285714285714285 0.5 0.061224489795918366">
 				<Property key="TextAlign" value="Center" />
 				<Property key="TextColour" value="1 0.803922 0.247059" />
 				<Property key="FontName" value="SM_SubHeader" />
 				<Property key="Caption" value="LOADED PACKS" />
 			</Widget>
-			<Widget type="TextBox" skin="TextBox" name="PlaylistTitle" position_real="0.5 0.14285714285714285 0.5 0.061224489795918366">
+			<Widget type="TextBox" skin="TextBox" name="TracksTitle" position_real="0.5 0.14285714285714285 0.5 0.061224489795918366">
 				<Property key="TextAlign" value="Center" />
 				<Property key="TextColour" value="1 0.803922 0.247059" />
 				<Property key="FontName" value="SM_SubHeader" />
