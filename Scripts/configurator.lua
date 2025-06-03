@@ -42,7 +42,6 @@ local text = {
         volume_title = "VOLUME",
         select_title = "SONG SELECT",
         volume_warning = "Warning! If you have the\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusic selected, it will ONLY be affected by the volume slider in the settings!",
-		
 		choose_songs_title = "CHOOSE SONGS",
 		loaded_packs_title = "LOADED PACKS",
 		tracks_title = "TRACKS",
@@ -119,7 +118,7 @@ local function getByIndex(tbl, index, getKey)
 	end
 end
 
-local function valueExists( array, value )
+local function valueExists(array, value)
 	for _, v in ipairs( array ) do
 		if v == value then
 			return true
@@ -240,7 +239,7 @@ function Configurator:client_onCreate()
     self.imageCacheCountdown = 40
 end
 
-function Configurator:cl_onPacksPageChange( btnName )
+function Configurator:cl_onPacksPageChange(btnName)
 	if btnName == "NextPagePacks" then
 		self.currentPackPage = sm.util.clamp(self.currentPackPage + 1, 1, math.ceil(#sm.customRaidMusic.musicPacks / 2))
 	elseif btnName == "PrevPagePacks" then
@@ -280,15 +279,10 @@ function Configurator:cl_updatePacks()
 			else
 				self.playlistGui:setImage("PackThumb"..i, "$CONTENT_DATA/Gui/Images/missing.png")
 			end
-			
-			local songCount = pack.songs and getRealLength(pack.songs) or 0
 
 			local songCount = pack.songs and getRealLength(pack.songs) or 0
-
-			local songCount = pack.songs and getRealLength(pack.songs) or 0
-
 			if pack.songs and songCount > 0 then
-				local text = translate("featured_tracks")
+				local songsText = translate("featured_tracks")
 				local added = {}
 				local shown = 0
 
@@ -298,17 +292,17 @@ function Configurator:cl_updatePacks()
 						added[o] = true
 						shown = shown + 1
 						if shown <= 4 then
-							text = text .. "\n" .. o
+							songsText = songsText .. "\n" .. o
 						elseif shown == 5 then
-							text = text .. "\n" .. o
+							songsText = songsText .. "\n" .. o
 						elseif shown >= 6 then
-							text = text:sub(1, #text - #o) .. translate("featured_tracks_more")
+							songsText = songsText:sub(1, #songsText - #o) .. translate("featured_tracks_more")
 							break
 						end
 					end
 				end
 
-				self.playlistGui:setText("PackContains"..i, text)
+				self.playlistGui:setText("PackContains"..i, songsText)
 			else
 				self.playlistGui:setText("PackContains"..i, "")
 			end
@@ -318,7 +312,7 @@ function Configurator:cl_updatePacks()
 	end
 end
 
-function Configurator:cl_onSongPageChange( btnName )
+function Configurator:cl_onSongPageChange(btnName)
 	if btnName == "NextPageTracks" then
 		self.currentSongsPage = sm.util.clamp(self.currentSongsPage + 1, 1, math.ceil(getRealLength(sm.customRaidMusic.musicPacks[self.currentSelectedPack].songs) / 5))
 	elseif btnName == "PrevPageTracks" then
@@ -430,8 +424,6 @@ end
 function Configurator:cl_openPlaylist()
 	self.mainGUI:close()
     self.playlistGui:open()
-	
-	
 	self.playlistGui:setText("Title", translate("choose_songs_title"))
 	self.playlistGui:setText("PacksTitle", translate("loaded_packs_title"))
 	self.playlistGui:setText("TracksTitle", translate("tracks_title"))
