@@ -899,4 +899,79 @@
 	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
 		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl/vinyl_frame_300.png" />
 	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_1.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_2.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_3.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_4.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_5.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_6.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_7.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_8.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_9.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_10.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_11.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_12.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_13.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_14.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_15.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_16.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_17.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_18.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_19.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_20.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_21.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_22.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_23.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_24.png" />
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0.4739583333333333 0.4537037037037037 0.052083333333333336 0.09259259259259259">
+		<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl_jump/vinyl_jump_frame_25.png" />
+	</Widget>
 </MyGUI>
