@@ -56,7 +56,14 @@ local text = {
         full_title = "KAMPF MUSIK EINSTELLUNGEN",
         volume_title = "LAUTSTÄRKE",
         select_title = "MUSIK SELEKTION",
-        volume_warning = "Warnung! Wen du die\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusik ausgewählt hast, wird es nur vom Lautstärkeregler in den Einstellungen betroffen"
+        volume_warning = "Warnung! Wen du die\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusik ausgewählt hast, wird es nur vom Lautstärkeregler in den Einstellungen betroffen",
+		choose_songs_title = "LIEDER AUSWÄHLEN",
+        loaded_packs_title = "GELADENE PAKETE",
+        tracks_title = "TITEL",
+        featured_tracks = "Enthält Titel von:",
+        featured_tracks_more = "Und mehr...",
+        songs_created_by = "von:",
+        unknown_composer = "Unbekannt"
     },
     Italian = {
         interaction = "Configura Musica Assalto",
@@ -109,7 +116,14 @@ local text = {
         full_title = "KAMPF MUSIK ISTELLIGÄ",
         volume_title = "LUTSTÄRCHI",
         select_title = "MUSIK USWÄHLÄ",
-        volume_warning = "Achtung! Wen du d'\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusik usgwält hesch, wird es nur vom Lautstärkäregler i de Istelligä betroffä"
+        volume_warning = "Achtung! Wen du d'\n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\nmusik usgwält hesch, wird es nur vom Lautstärkäregler i de Istelligä betroffä",
+		choose_songs_title = "LIEÄDER USWÄHLÄ",
+        loaded_packs_title = "GLADENI PAKET",
+        tracks_title = "TITEL",
+        featured_tracks = "Enthält Titel fo:",
+        featured_tracks_more = "Und mehr...",
+        songs_created_by = "fo:",
+        unknown_composer = "Unbekannt"
     }
 }
 
