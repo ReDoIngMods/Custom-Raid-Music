@@ -79,7 +79,14 @@ local text = {
         full_title = "KONFIGURATOR MUZYKI NAJAZDU",
         volume_title = "GŁOŚNOŚĆ",
         select_title = "WYBÓR PIOSENKI",
-        volume_warning = "Uwaga! Jeśli masz wybraną piosenke \n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\n, jej głośność będzie zmieniona TYLKO przez suwak głośności w ustawieniach!"
+        volume_warning = "Uwaga! Jeśli masz wybraną piosenke \n\"Scrap Mechanic - Zheanna \"Zhea\" Erose - ???\"\n, jej głośność będzie zmieniona TYLKO przez suwak głośności w ustawieniach!",
+		choose_songs_title = "WYBIERZ PIOSENKI",
+        loaded_packs_title = "ZAŁADOWANE PACZKI",
+        tracks_title = "UTWORY",
+        featured_tracks = "Zawiera utwory z:",
+        featured_tracks_more = "I więcej... ",
+        songs_created_by = "Stworzona przez:",
+        unknown_composer = "Nieznany twórca"
     },
     Russian = {
         interaction = "Настроить Музыку Рейдов",
