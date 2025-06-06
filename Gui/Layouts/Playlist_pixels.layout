@@ -260,7 +260,6 @@
 				</Widget>
 			</Widget>
 			<Widget type="Widget" skin="PanelEmpty" name="TracksPages" position="520 425 460 45">
-				<Property key="Visible" value="false" />
 				<Widget type="EditBox" skin="EditBoxEmpty" name="CurrPageTracks" position="43 0 372 45">
 					<Property key="FontName" value="SM_ItemTitle" />
 					<Property key="Caption" value="0/99" />
@@ -269,12 +268,15 @@
 					<Property key="Static" value="true" />
 					<Property key="NeedMouse" value="false" />
 					<Property key="NeedKey" value="false" />
+					<Property key="Visible" value="false" />
 				</Widget>
 				<Widget type="Button" skin="DressbotArrowRight" name="NextPageTracks" position="415 0 45 45">
 					<Property key="NeedMouse" value="true" />
+					<Property key="Visible" value="false" />
 				</Widget>
 				<Widget type="Button" skin="DressbotArrowLeft" name="PrevPageTracks" position="0 0 45 45">
 					<Property key="NeedMouse" value="true" />
+					<Property key="Visible" value="false" />
 				</Widget>
 			</Widget>
 		</Widget>
