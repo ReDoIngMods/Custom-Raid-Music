@@ -75,7 +75,11 @@ function MusicHook:client_onCreate()
 end
 
 -- Playlist builder that accounts for stupid users who got a music pack, enabled songs from it and then promptly uninstalled it, leaving us with a pile of non-existent entries
-function MusicHook:cl_buildPlaylist()
+function MusicHook:cl_buildPlaylist(soundKill)
+	if soundKill then
+		self.music:destroy()
+		self.music = nil
+	end
 	self.playlist = {}
 	if sm.customRaidMusic.songData.playlist ~= 0 then
 		for _, playlistSong in pairs(sm.customRaidMusic.songData.playlist) do
@@ -182,7 +186,9 @@ function MusicHook:client_onFixedUpdate(dt)
 						self.songProgress = self.currentSongData.loopStart
 					end
 					-- Force update progress to loop and stuff
-					self.music:setParameter("CAE_Position", self.songProgress)
+					if curTick % 10 == 0 then
+						self.music:setParameter("CAE_Position", self.songProgress)
+					end
 					-- Prepare to jump
 					self.jumpToEnd = true
 				else
@@ -231,7 +237,7 @@ function MusicHook:client_onFixedUpdate(dt)
 		end
 	end
 	-- Set volume all the time because I can't be bothered with checking when it's changed this has literally 0 performance impact, so whatever
-	if sm.cae_injected and self.music and sm.exists(self.music) then
+	if sm.cae_injected and self.music and sm.exists(self.music) and curTick % 10 == 0 then
 		self.music:setParameter("CAE_Volume", sm.customRaidMusic.songData.volume)
 	end
 end
