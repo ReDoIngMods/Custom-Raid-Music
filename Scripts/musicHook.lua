@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-global, param-type-mismatch
+dofile("$CONTENT_DATA/Scripts/localizator.lua")
 
 MusicHook = class()
 
@@ -72,6 +73,16 @@ function MusicHook:client_onCreate()
 	self.songProgress = 0
 	self.queuedEffectRecreation = false
 	self.jumpToEnd = false
+	self.prevPlayingState = false
+	-- Popup stuff
+	self.popupCountdown = 0
+	self.popupFadeCountdown = 0
+	self.animProgress = 0
+    self.frame = 1
+	self.vinylJumpFrame = 1
+	self.holdOnFirstJumpFrame = 0
+	self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
+	self.songColor = sm.color.new("#ffffff")
 end
 
 -- Playlist builder that accounts for stupid users who got a music pack, enabled songs from it and then promptly uninstalled it, leaving us with a pile of non-existent entries
@@ -221,8 +232,16 @@ function MusicHook:client_onFixedUpdate(dt)
 			if sm.customRaidMusic.songData.playlist ~= 0 then -- Allow users to have an empty playlist... Who installs a music mod to then disable music?
 				if self.playlist and #self.playlist > 0 then
 					self.music = sm.effect.createEffect(self.playlist[1], sm.localPlayer.getPlayer().character)
+					local imagePath = "$CONTENT_"..string.sub(self.playlist[1], 0, 36).."/pack_thumbnail.png"
+					local sucks, ass = pcall(sm.json.fileExists, imagePath)
+					if sucks and ass then
+						self.songImage = imagePath
+					else
+						self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
+					end
 					for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
 						self.currentSongData = pack.songs[self.playlist[1]]
+						self.songColor = pack.color or sm.color.new("#ffffff")
 					end
 					table.remove(self.playlist, 1)
 					if #self.playlist < 1 then
@@ -240,4 +259,104 @@ function MusicHook:client_onFixedUpdate(dt)
 	if sm.cae_injected and self.music and sm.exists(self.music) and curTick % 10 == 0 then
 		self.music:setParameter("CAE_Volume", sm.customRaidMusic.songData.volume)
 	end
+	-- Show popup every time we start playing music
+	if self.musicPlaying ~= self.prevPlayingState then
+		self.prevPlayingState = self.musicPlaying
+		if self.musicPlaying and not (self.popup and sm.exists(self.popup)) then
+			self.popup = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Song_popup.layout", true, {
+				isHud = true,
+				isInteractive = false,
+				needsCursor = false,
+				hidesHotbar = false,
+				isOverlapped = false,
+				backgroundAlpha = 0
+			})
+			self.popup:setOnCloseCallback("cl_startPopupFade")
+			self.popup:setColor("VinylVisual", self.songColor)
+			self.popup:setImage("PackImage", self.songImage)
+			self.popup:setText("SongName", self.currentSongData.name)
+			self.popup:setText("SongComposer", translate("songs_created_by").." "..self.currentSongData.composer)
+			self.popup:setText("SongOrigin", translate("from").." "..self.currentSongData.origin)
+			self.popup:open()
+			self.popupCountdown = 200
+			self.holdOnFirstJumpFrame = 40
+		end
+	end
+	-- Count down popup time
+	if self.popupCountdown > 0 then
+		self.popupCountdown = self.popupCountdown - 1
+	else
+		if self.popup and sm.exists(self.popup) and self.popup:isActive() then
+			self.popup:close()
+		end
+	end
+	if self.popupFadeCountdown > 0 then
+		self.popupFadeCountdown = self.popupFadeCountdown - 1
+	else
+		if self.popupFade and sm.exists(self.popupFade) and self.popupFade:isActive() then
+			self.popupFade:close()
+		end
+	end
+	if self.holdOnFirstJumpFrame > 0 then
+		self.holdOnFirstJumpFrame = self.holdOnFirstJumpFrame - 1
+	end
+end
+
+function MusicHook:cl_startPopupFade()
+	self.popupFade = sm.gui.createGuiFromLayout("$CONTENT_DATA/Gui/Layouts/Song_popup_fade.layout", true, {
+		isHud = true,
+		isInteractive = false,
+		needsCursor = false,
+		hidesHotbar = false,
+		isOverlapped = false,
+		backgroundAlpha = 0
+	})
+	self.popupFade:setOnCloseCallback("cl_resetPopupData")
+	self.popupFade:setColor("VinylVisual", self.songColor)
+	self.popupFade:setImage("PackImage", self.songImage)
+	self.popupFade:setText("SongName", self.currentSongData.name)
+	self.popupFade:setText("SongComposer", translate("songs_created_by").." "..self.currentSongData.composer)
+	self.popupFade:setText("SongOrigin", translate("from").." "..self.currentSongData.origin)
+	self.popupFade:open()
+	self.popupFadeCountdown = 60
+end
+
+function MusicHook:cl_resetPopupData()
+	self.vinylJumpFrame = 1
+end
+
+local frameFraction = (1 / 60)
+function MusicHook:client_onUpdate(dt)
+    -- Animate popups
+    if self.popup and sm.exists(self.popup) and self.popup:isActive() then
+        self.animProgress = self.animProgress + dt
+        if self.animProgress >= frameFraction then
+			if self.vinylJumpFrame > 25 then
+				self.popup:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl/vinyl_frame_"..self.frame..".png")
+				self.frame = self.frame + 1
+				if self.frame > 300 then
+					self.frame = 1
+				end
+			else
+				if self.holdOnFirstJumpFrame <= 0 then
+					self.popup:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl_jump/vinyl_jump_frame_"..self.vinylJumpFrame..".png")
+					self.vinylJumpFrame = self.vinylJumpFrame + 1
+				else
+					self.popup:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl_jump/vinyl_jump_frame_1.png")
+				end
+			end
+            self.animProgress = self.animProgress - frameFraction
+        end
+    end
+	if self.popupFade and sm.exists(self.popupFade) and self.popupFade:isActive() then
+        self.animProgress = self.animProgress + dt
+        if self.animProgress >= frameFraction then
+            self.popupFade:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl/vinyl_frame_"..self.frame..".png")
+            self.frame = self.frame + 1
+            if self.frame > 300 then
+                self.frame = 1
+            end
+            self.animProgress = self.animProgress - frameFraction
+        end
+    end
 end
