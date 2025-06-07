@@ -1,0 +1,54 @@
+<MyGUI type="Layout" version="3.2.0">
+	<Widget type="Widget" skin="PanelEmpty" position="1513 7 400 302">
+		<Widget type="Widget" skin="HudBackgroundLarge" position="189 83 211 219">
+			<Widget type="Widget" skin="HighlightSelectionBox" position="7 14 198 198">
+				<Widget type="ImageBox" skin="ImageBox" name="PackImage" position="2 2 194 194" />
+			</Widget>
+		</Widget>
+		<Widget type="ImageBox" skin="ImageBox" name="VinylVisual" position="89 95 100 200">
+			<Property key="ImageTexture" value="$CONTENT_f9e17931-93ca-41e9-b9fe-a3ae1d77c01a/Gui/Images/vinyl/vinyl_frame_1.png" />
+			<Property key="ImageCoord" value="0 0 250 500" />
+		</Widget>
+		<Widget type="Widget" skin="HudBackgroundLarge" position="0 0 411 97">
+			<Widget type="Button" skin="GenderButton" name="Song" position="4 4 392 89">
+				<Widget type="EditBox" skin="EditBoxEmpty" name="SongName" position="10 0 375 35">
+					<Property key="FontName" value="SM_Label" />
+					<Property key="Caption" value="Song Name goes here" />
+					<Property key="TextAlign" value="Left VCenter" />
+					<Property key="ReadOnly" value="true" />
+					<Property key="Static" value="true" />
+					<Property key="NeedMouse" value="false" />
+				</Widget>
+				<Widget type="EditBox" skin="EditBoxEmpty" name="SongComposer" position="10 30 375 21">
+					<Property key="FontName" value="SM_LabelTiny" />
+					<Property key="Caption" value="by: EEEE" />
+					<Property key="TextAlign" value="Left VCenter" />
+					<Property key="ReadOnly" value="true" />
+					<Property key="Static" value="true" />
+					<Property key="WordWrap" value="true" />
+					<Property key="OverflowToTheLeft" value="true" />
+					<Property key="MultiLine" value="true" />
+					<Property key="NeedMouse" value="false" />
+					<Property key="Alpha" value="1" />
+					<Property key="TextColour" value="#808080" />
+				</Widget>
+				<Widget type="Widget" skin="WhiteSkin" position="10 54 372 1">
+					<Property key="Alpha" value="0.2" />
+				</Widget>
+				<Widget type="EditBox" skin="EditBoxEmpty" name="SongOrigin" position="10 58 375 21">
+					<Property key="FontName" value="SM_LabelTiny" />
+					<Property key="Caption" value="from: Half-Life 3" />
+					<Property key="TextAlign" value="Left VCenter" />
+					<Property key="ReadOnly" value="true" />
+					<Property key="Static" value="true" />
+					<Property key="WordWrap" value="true" />
+					<Property key="OverflowToTheLeft" value="true" />
+					<Property key="MultiLine" value="true" />
+					<Property key="NeedMouse" value="false" />
+					<Property key="Alpha" value="1" />
+					<Property key="TextColour" value="#808080" />
+				</Widget>
+			</Widget>
+		</Widget>
+	</Widget>
+</MyGUI>

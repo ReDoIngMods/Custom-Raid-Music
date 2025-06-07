@@ -1,6 +1,5 @@
 <MyGUI type="Layout" version="3.2.0">
 	<Widget type="Widget" skin="PanelEmpty" position_real="0.7880208333333333 0.006481481481481481 0.20833333333333334 0.2796296296296296">
-		<Property key="Alpha" value="0" />
 		<Widget type="Widget" skin="HudBackgroundLarge" position_real="0.4725 0.27483443708609273 0.5275 0.7251655629139073">
 			<Widget type="Widget" skin="HighlightSelectionBox" position_real="0.03317535545023697 0.0639269406392694 0.9383886255924171 0.9041095890410958">
 				<Widget type="ImageBox" skin="ImageBox" name="PackImage" position_real="0.010101010101010102 0.010101010101010102 0.9797979797979798 0.9797979797979798" />
@@ -52,7 +51,7 @@
 			</Widget>
 		</Widget>
 		<Controller type="ControllerFadeAlpha">
-            <Property key="Alpha" value="1"/>
+            <Property key="Alpha" value="0"/>
             <Property key="Coef" value="1"/>
             <Property key="Enabled" value="true"/>
         </Controller>
