@@ -232,16 +232,15 @@ function MusicHook:client_onFixedUpdate(dt)
 			if sm.customRaidMusic.songData.playlist ~= 0 then -- Allow users to have an empty playlist... Who installs a music mod to then disable music?
 				if self.playlist and #self.playlist > 0 then
 					self.music = sm.effect.createEffect(self.playlist[1], sm.localPlayer.getPlayer().character)
-					local imagePath = "$CONTENT_"..string.sub(self.playlist[1], 0, 36).."/pack_thumbnail.png"
-					local sucks, ass = pcall(sm.json.fileExists, imagePath)
-					if sucks and ass then
-						self.songImage = imagePath
-					else
-						self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
-					end
 					for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
 						self.currentSongData = pack.songs[self.playlist[1]]
 						self.songColor = pack.color or sm.color.new("#ffffff")
+						local sucks, ass = pcall(sm.json.fileExists, pack.image)
+						if sucks and ass then
+							self.songImage = pack.image
+						else
+							self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
+						end
 					end
 					table.remove(self.playlist, 1)
 					if #self.playlist < 1 then
