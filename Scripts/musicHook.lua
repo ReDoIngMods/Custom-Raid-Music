@@ -235,12 +235,17 @@ function MusicHook:client_onFixedUpdate(dt)
 					for _, pack in ipairs(sm.customRaidMusic.musicPacks) do
 						self.currentSongData = pack.songs[self.playlist[1]]
 						self.songColor = pack.color or sm.color.new("#ffffff")
-						local sucks, ass = pcall(sm.json.fileExists, pack.image)
-						if sucks and ass then
-							self.songImage = pack.image
+						if pack.name == "Scrap Mechanic Pack" then
+							self.songImage = "$CONTENT_DATA/Gui/Images/pack_sm_thumbnail.png"
 						else
-							self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
+							local sucks, ass = pcall(sm.json.fileExists, pack.image)
+							if sucks and ass then
+								self.songImage = pack.image
+							else
+								self.songImage = "$CONTENT_DATA/Gui/Images/missing.png"
+							end
 						end
+						if self.currentSongData then break end
 					end
 					table.remove(self.playlist, 1)
 					if #self.playlist < 1 then
