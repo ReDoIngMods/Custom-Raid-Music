@@ -282,8 +282,8 @@ function MusicHook:client_onFixedUpdate(dt)
 			self.popup:setText("SongComposer", translate("songs_created_by").." "..self.currentSongData.composer)
 			self.popup:setText("SongOrigin", translate("from").." "..self.currentSongData.origin)
 			self.popup:open()
-			self.popupCountdown = 200
-			self.holdOnFirstJumpFrame = 40
+			self.popupCountdown = 400
+			self.holdOnFirstJumpFrame = 60
 		end
 	end
 	-- Count down popup time
@@ -345,6 +345,7 @@ function MusicHook:client_onUpdate(dt)
 				if self.holdOnFirstJumpFrame <= 0 then
 					self.popup:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl_jump/vinyl_jump_frame_"..self.vinylJumpFrame..".png")
 					self.vinylJumpFrame = self.vinylJumpFrame + 1
+					self.frame = 1
 				else
 					self.popup:setImage("VinylVisual", "$CONTENT_DATA/Gui/Images/vinyl_jump/vinyl_jump_frame_1.png")
 				end
