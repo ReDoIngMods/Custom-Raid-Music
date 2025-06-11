@@ -88,6 +88,9 @@ end
 -- Playlist builder that accounts for stupid users who got a music pack, enabled songs from it and then promptly uninstalled it, leaving us with a pile of non-existent entries
 function MusicHook:cl_buildPlaylist(soundKill)
 	if soundKill then
+		if sm.cae_injected and self.music and sm.exists(self.music) and self.music:isPlaying() then
+			sm.effect.playHostedEffect("Transition", sm.localPlayer.getPlayer().character)
+		end
 		self.music:destroy()
 		self.music = nil
 	end
@@ -101,14 +104,6 @@ function MusicHook:cl_buildPlaylist(soundKill)
 					end
 				end
 			end
-		end
-		if self.music and sm.exists(self.music) and self.music:isPlaying() then
-			if sm.cae_injected then
-				sm.effect.playHostedEffect("Transition", sm.localPlayer.getPlayer().character)
-			end
-			self.music:destroy()
-			self.music = nil
-			print("[RAID MUSIC] Killed playing music!")
 		end
 		print("[RAID MUSIC] Built playlist:", self.playlist)
 	end
