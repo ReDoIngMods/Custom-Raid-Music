@@ -131,7 +131,7 @@ function MusicHook:client_onFixedUpdate(dt)
 		end
 	end
 	-- Check attack cells
-	if self.playlist[1] == "Vanilla" or not sm.cae_injected then
+	if self.playlist[1] == "Vanilla" or (self.currentSongData and self.currentSongData.name == "???") or not sm.cae_injected then
 		for _, cell in pairs(sv.sv.cropAttackCells) do
 			local attackPos = cell.saved.attackPos
 			if attackPos and (sm.localPlayer.getPlayer().character.worldPosition - attackPos):length() < 500 then
@@ -164,7 +164,7 @@ function MusicHook:client_onFixedUpdate(dt)
 	end
 	-- Effect stuff
 	if self.music and sm.exists(self.music) then
-		if self.playlist[1] == "Vanilla" or not sm.cae_injected then
+		if self.playlist[1] == "Vanilla" or (self.currentSongData and self.currentSongData.name == "???") or not sm.cae_injected then
 			-- Vanilla handles looping on it's own so we just let it do it's thing and tell it when to start and stop
 			if self.musicPlaying then
 				if not self.music:isPlaying() then
